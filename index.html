@@ -134,7 +134,7 @@
                 <button onclick="setLanguage('ja')" id="btn-ja" class="lang-btn text-[10px] md:text-xs px-3 py-1">日本語</button>
                 <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-[10px] md:text-xs px-3 py-1">EN</button>
             </div>
-            <a href="https://www.youtube.com/channel/UCq4BXOX5sPCVIZDUWFPS0yQ" target="_blank" class="bg-[#ffb3c6] text-white hover:bg-[#ff8fab] px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-sm font-round flex items-center transition-all shadow-[0_4px_10px_rgba(255,179,198,0.4)] whitespace-nowrap">
+            <a href="https://www.youtube.com/channel/UC4js-s7BYKm4dGYFyWQUCSw" target="_blank" class="bg-[#ffb3c6] text-white hover:bg-[#ff8fab] px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-sm font-round flex items-center transition-all shadow-[0_4px_10px_rgba(255,179,198,0.4)] whitespace-nowrap">
                 <span id="nav-yt-text">YouTube 頻道</span>
             </a>
         </div>
@@ -180,6 +180,27 @@
                 <span id="phil-text2" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
                     感受 可愛的魅力 與 溫暖
                 </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 影片展示區塊 (MUSIC) -->
+    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 md:p-8 rounded-[32px] shadow-sm flex flex-col justify-center">
+            
+            <div class="flex items-center gap-3 mb-6 pl-1">
+                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
+                    MUSIC
+                </span>
+                <h2 id="music-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
+                    本週推薦曲目
+                </h2>
+            </div>
+            
+            <!-- YouTube 嵌入框架 -->
+            <div class="w-full aspect-video rounded-[20px] overflow-hidden border-4 border-[#fff0f3] shadow-inner bg-[#fff5f7]">
+                <!-- 將 YOUTUBE_VIDEO_ID 替換成你的影片 ID，例如: dQw4w9WgXcQ -->
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -258,6 +279,7 @@
                 philTitle: "頻道理念",
                 philText1: "在忙碌的生活中，尋找一絲甜蜜的療癒...",
                 philText2: "感受 可愛的魅力 與 溫暖",
+                musicTitle: "本週推薦曲目",
                 allCategory: "全部甜點 (All)",
                 download: "下載",
                 shuffle: "魔法洗牌",
@@ -269,6 +291,7 @@
                 philTitle: "チャンネルの理念",
                 philText1: "忙しい日常の中で、少しの甘い癒しを見つける...",
                 philText2: "かわいい魅力と温もりを感じて",
+                musicTitle: "おすすめの曲",
                 allCategory: "すべて (All)",
                 download: "ダウンロード",
                 shuffle: "魔法のシャッフル",
@@ -280,6 +303,7 @@
                 philTitle: "Philosophy",
                 philText1: "Finding a touch of sweet healing in a busy life...",
                 philText2: "Feel the cute charm and warmth",
+                musicTitle: "Featured Music",
                 allCategory: "All Sweets",
                 download: "Download",
                 shuffle: "Magic Shuffle",
@@ -322,10 +346,11 @@
             const t = translations[lang];
             document.getElementById('nav-yt-text').textContent = t.navYt;
             
-            // 頻道理念文字更新
+            // 文字更新
             document.getElementById('phil-title').textContent = t.philTitle;
             document.getElementById('phil-text1').textContent = t.philText1;
             document.getElementById('phil-text2').textContent = t.philText2;
+            document.getElementById('music-title').textContent = t.musicTitle;
             
             document.getElementById('shuffle-text').textContent = t.shuffle;
             
