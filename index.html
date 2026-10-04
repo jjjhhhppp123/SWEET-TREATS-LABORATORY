@@ -140,8 +140,8 @@
         </div>
     </nav>
 
-    <!-- 頁首風格背景區塊 -->
-    <section class="relative w-full min-h-[50vh] flex flex-col justify-center pt-28 pb-12 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
+    <!-- 頁首風格背景區塊 (已移除自我介紹文字框) -->
+    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-12 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
         
         <!-- Background Image from Google Drive -->
         <div class="absolute inset-0 z-0 overflow-hidden">
@@ -153,19 +153,9 @@
         </div>
 
         <header class="relative z-10 px-6 text-center max-w-4xl mx-auto w-full">
-            <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#5c4d53] mb-6 leading-tight drop-shadow-md bg-white/70 inline-block px-8 py-3 rounded-[32px] backdrop-blur-sm border-2 border-white/60 shadow-sm">
+            <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#5c4d53] leading-tight drop-shadow-md bg-white/70 inline-block px-8 py-3 rounded-[32px] backdrop-blur-sm border-2 border-white/60 shadow-sm">
                 Sweet Treats Laboratory
             </h1>
-            
-            <!-- 介紹文字框 (依照圖1樣式排版) -->
-            <div class="relative bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgba(255,179,198,0.2)] max-w-3xl mx-auto mt-4">
-                <p id="hero-desc1" class="text-[#7d6b71] text-sm md:text-base font-bold leading-relaxed"></p>
-                <p id="hero-desc2" class="text-[#7d6b71] text-sm md:text-base font-bold leading-relaxed mt-1.5"></p>
-                
-                <p id="hero-sub" class="text-[#ff8fab] text-sm md:text-base font-bold mt-6 leading-relaxed px-2 md:px-8"></p>
-                
-                <p id="hero-thanks" class="text-[#7d6b71] text-sm md:text-base font-bold mt-6"></p>
-            </div>
         </header>
     </section>
 
@@ -240,10 +230,6 @@
         const translations = {
             zh: {
                 navYt: "YouTube 頻道",
-                desc1: "每首歌就像甜點，甜進你的心 🍰🍰🍰",
-                desc2: "本頻道融合 AI 創作，並執行工作流實驗",
-                subText: "如果你喜歡我的頻道，請訂閱我，喜歡我的創作風格也可以上我的官網領取免費桌布 (不定期更新)",
-                thanks: "感謝你的聆聽 🎵",
                 allCategory: "全部甜點 (All)",
                 download: "帶回家",
                 shuffle: "魔法洗牌",
@@ -252,10 +238,6 @@
             },
             ja: {
                 navYt: "YouTube チャンネル",
-                desc1: "すべての曲がスイーツのように、あなたの心に甘く響きます 🍰🍰🍰",
-                desc2: "当チャンネルはAIによる創作を取り入れ、ワークフローの実験を行っています",
-                subText: "もしチャンネルを気に入ってくれたら、ぜひ登録をお願いします！私の作品スタイルが好きなら、公式サイトで無料の壁紙もゲットしてくださいね (不定期更新)",
-                thanks: "聴いてくれてありがとう 🎵",
                 allCategory: "すべて (All)",
                 download: "持ち帰る",
                 shuffle: "魔法のシャッフル",
@@ -264,10 +246,6 @@
             },
             en: {
                 navYt: "YouTube Channel",
-                desc1: "Every song is like a sweet dessert, melting right into your heart 🍰🍰🍰",
-                desc2: "This channel blends AI creation and conducts workflow experiments.",
-                subText: "If you like my channel, please hit subscribe! And if you enjoy my creative style, feel free to visit my official website to download free wallpapers (updated irregularly).",
-                thanks: "Thank you for listening 🎵",
                 allCategory: "All Sweets",
                 download: "Take Home",
                 shuffle: "Magic Shuffle",
@@ -309,12 +287,6 @@
 
             const t = translations[lang];
             document.getElementById('nav-yt-text').textContent = t.navYt;
-            
-            document.getElementById('hero-desc1').innerHTML = t.desc1;
-            document.getElementById('hero-desc2').innerHTML = t.desc2;
-            document.getElementById('hero-sub').innerHTML = t.subText;
-            document.getElementById('hero-thanks').innerHTML = t.thanks;
-            
             document.getElementById('shuffle-text').textContent = t.shuffle;
             
             if(document.getElementById('modal-download-text')) document.getElementById('modal-download-text').textContent = t.modalDown;
