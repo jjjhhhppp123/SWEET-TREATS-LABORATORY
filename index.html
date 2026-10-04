@@ -140,8 +140,8 @@
         </div>
     </nav>
 
-    <!-- 頁首風格背景區塊 (已移除自我介紹文字框) -->
-    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-12 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
+    <!-- 頁首風格背景區塊 -->
+    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-16 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
         
         <!-- Background Image from Google Drive -->
         <div class="absolute inset-0 z-0 overflow-hidden">
@@ -159,8 +159,33 @@
         </header>
     </section>
 
+    <!-- 頻道理念區塊 (ABOUT) -->
+    <section class="px-6 max-w-3xl mx-auto w-full mb-8 relative z-10 -mt-16">
+        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-8 md:p-10 rounded-[32px] shadow-sm flex flex-col justify-center">
+            
+            <div class="flex items-center gap-3 mb-6 pl-1">
+                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
+                    ABOUT
+                </span>
+                <h2 id="phil-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
+                    頻道理念
+                </h2>
+            </div>
+            
+            <!-- 文字螢光筆高光區塊 (去除了玩偶圖案) -->
+            <div class="flex flex-col items-start gap-2.5 font-round font-bold text-sm md:text-base pl-1">
+                <span id="phil-text1" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
+                    在忙碌的生活中，尋找一絲甜蜜的療癒...
+                </span>
+                <span id="phil-text2" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
+                    感受 可愛的魅力 與 溫暖
+                </span>
+            </div>
+        </div>
+    </section>
+
     <!-- 時鐘區塊 -->
-    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10 -mt-6">
+    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
         <div class="relative bg-white/90 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 rounded-[32px] shadow-sm flex flex-col items-center justify-center">
             <div class="flex justify-between w-full max-w-[320px] mb-2 z-10 opacity-60">
                 <span class="text-xs text-[#ff8fab] font-mono font-bold">SYS.STATUS: SWEET</span>
@@ -230,6 +255,9 @@
         const translations = {
             zh: {
                 navYt: "YouTube 頻道",
+                philTitle: "頻道理念",
+                philText1: "在忙碌的生活中，尋找一絲甜蜜的療癒...",
+                philText2: "感受 可愛的魅力 與 溫暖",
                 allCategory: "全部甜點 (All)",
                 download: "帶回家",
                 shuffle: "魔法洗牌",
@@ -238,6 +266,9 @@
             },
             ja: {
                 navYt: "YouTube チャンネル",
+                philTitle: "チャンネルの理念",
+                philText1: "忙しい日常の中で、少しの甘い癒しを見つける...",
+                philText2: "かわいい魅力と温もりを感じて",
                 allCategory: "すべて (All)",
                 download: "持ち帰る",
                 shuffle: "魔法のシャッフル",
@@ -246,6 +277,9 @@
             },
             en: {
                 navYt: "YouTube Channel",
+                philTitle: "Philosophy",
+                philText1: "Finding a touch of sweet healing in a busy life...",
+                philText2: "Feel the cute charm and warmth",
                 allCategory: "All Sweets",
                 download: "Take Home",
                 shuffle: "Magic Shuffle",
@@ -287,6 +321,12 @@
 
             const t = translations[lang];
             document.getElementById('nav-yt-text').textContent = t.navYt;
+            
+            // 頻道理念文字更新
+            document.getElementById('phil-title').textContent = t.philTitle;
+            document.getElementById('phil-text1').textContent = t.philText1;
+            document.getElementById('phil-text2').textContent = t.philText2;
+            
             document.getElementById('shuffle-text').textContent = t.shuffle;
             
             if(document.getElementById('modal-download-text')) document.getElementById('modal-download-text').textContent = t.modalDown;
