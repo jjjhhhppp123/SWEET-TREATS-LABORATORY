@@ -1,4 +1,4 @@
-// wallpapers.js - Sweet Treats Laboratory 專屬圖片資料庫
+// wallpapers.js - SWEET TREATS LABORATORY 專屬圖片資料庫
 // ==========================================
 
 // 1. 獨立的分類對照表（統一管理所有分類的三語名稱）
@@ -25,38 +25,46 @@ const categoryDictionary = {
     }
 };
 
-// 2. 桌布資料庫
+// 2. 桌布資料庫 (已更新為你的 5 張新圖)
 const wallpaperDatabase = [
     { 
         id: "001", 
         tag: {
             category: "sweet",
-            styleDesc: { zh: "草莓午茶 / 甜蜜點心", ja: "いちごのお茶会 / 甘いお菓子", en: "Strawberry Tea / Sweet Treats" }
+            styleDesc: { zh: "夢幻甜點 / 午茶時光", ja: "夢のスイーツ / ティータイム", en: "Dreamy Sweets / Tea Time" }
         },
-        fileId: "1zpNauxD7N-WmTWLY5KW0Iqh9kH1cBNVE" 
+        fileId: "1y6sX1ArnU0vNGjKHUy-RuqXxdg5DF4RZ" 
     },
     { 
         id: "002", 
         tag: {
             category: "cute",
-            styleDesc: { zh: "軟萌玩偶 / 治癒時光", ja: "ふわふわぬいぐるみ / 癒しの時間", en: "Fluffy Plushies / Healing Time" }
+            styleDesc: { zh: "軟萌日常 / 治癒陪伴", ja: "ふわふわ日常 / 癒しの寄り添い", en: "Fluffy Daily / Healing Companion" }
         },
-        fileId: "1YqQE5YhWXj1sKP5wr7tLrnH5pDGu80Hu" 
+        fileId: "1OM8cMNhT6gGyvDsWK14XT9EYufBx1FiB" 
     },
     { 
         id: "003", 
         tag: {
             category: "pastel",
-            styleDesc: { zh: "粉彩天空 / 雲朵漂浮", ja: "パステルの空 / 浮かぶ雲", en: "Pastel Sky / Floating Clouds" }
+            styleDesc: { zh: "粉彩光影 / 溫柔色調", ja: "パステルの光 / 優しい色合い", en: "Pastel Light / Gentle Tones" }
         },
-        fileId: "1_USchjy_Vbfi94a6lAZexr2aZMftt5Ma" 
+        fileId: "1gLgKeLcycxS2P2LfBkRCFgt6xIBfJmuy" 
     },
     { 
         id: "004", 
         tag: {
             category: "room",
-            styleDesc: { zh: "少女臥室 / 溫馨角落", ja: "少女の寝室 / 温かいコーナー", en: "Girl's Bedroom / Cozy Corner" }
+            styleDesc: { zh: "溫馨角落 / 寧靜空間", ja: "温かいコーナー / 静かな空間", en: "Cozy Corner / Peaceful Space" }
         },
-        fileId: "1OjKUy95t-wKV3CHJEYKhnMpsppHvDiVl" 
+        fileId: "1FmMircBSJBM0HkM7yNtu_Hx1a0yuB1_G" 
+    },
+    { 
+        id: "005", 
+        tag: {
+            category: "sweet",
+            styleDesc: { zh: "甜蜜氛圍 / 舒壓放鬆", ja: "甘い雰囲気 / リラックス", en: "Sweet Vibe / Relaxing" }
+        },
+        fileId: "1mJuzDgstfp7lRjI4OAXwjHqlloqUyvkR" 
     }
 ];
