@@ -25,7 +25,7 @@ const categoryDictionary = {
     }
 };
 
-// 2. 桌布資料庫 (已更新為你的 5 張新圖)
+// 2. 桌布資料庫 (已更新為新的 5 張圖片連結)
 const wallpaperDatabase = [
     { 
         id: "001", 
@@ -33,7 +33,7 @@ const wallpaperDatabase = [
             category: "sweet",
             styleDesc: { zh: "夢幻甜點 / 午茶時光", ja: "夢のスイーツ / ティータイム", en: "Dreamy Sweets / Tea Time" }
         },
-        fileId: "1y6sX1ArnU0vNGjKHUy-RuqXxdg5DF4RZ" 
+        fileId: "1hBT4laW0yxGdWkToKA6jw62pMBUQ1TLM" 
     },
     { 
         id: "002", 
@@ -41,7 +41,7 @@ const wallpaperDatabase = [
             category: "cute",
             styleDesc: { zh: "軟萌日常 / 治癒陪伴", ja: "ふわふわ日常 / 癒しの寄り添い", en: "Fluffy Daily / Healing Companion" }
         },
-        fileId: "1OM8cMNhT6gGyvDsWK14XT9EYufBx1FiB" 
+        fileId: "1jGqKLWg5l3J_xMFmEnzYVVkY2ZOuiPmq" 
     },
     { 
         id: "003", 
@@ -49,7 +49,7 @@ const wallpaperDatabase = [
             category: "pastel",
             styleDesc: { zh: "粉彩光影 / 溫柔色調", ja: "パステルの光 / 優しい色合い", en: "Pastel Light / Gentle Tones" }
         },
-        fileId: "1gLgKeLcycxS2P2LfBkRCFgt6xIBfJmuy" 
+        fileId: "1IgW-5fo62Oj02UWu1cntXKpXEagq5UbY" 
     },
     { 
         id: "004", 
@@ -57,7 +57,7 @@ const wallpaperDatabase = [
             category: "room",
             styleDesc: { zh: "溫馨角落 / 寧靜空間", ja: "温かいコーナー / 静かな空間", en: "Cozy Corner / Peaceful Space" }
         },
-        fileId: "1FmMircBSJBM0HkM7yNtu_Hx1a0yuB1_G" 
+        fileId: "1zHb2oqCcXOuaeqaIOCS65ynxmX20EeHc" 
     },
     { 
         id: "005", 
@@ -65,6 +65,6 @@ const wallpaperDatabase = [
             category: "sweet",
             styleDesc: { zh: "甜蜜氛圍 / 舒壓放鬆", ja: "甘い雰囲気 / リラックス", en: "Sweet Vibe / Relaxing" }
         },
-        fileId: "1mJuzDgstfp7lRjI4OAXwjHqlloqUyvkR" 
+        fileId: "18A5tEiK93-nTZnINhlkf_sVtKM7Qseqj" 
     }
 ];
