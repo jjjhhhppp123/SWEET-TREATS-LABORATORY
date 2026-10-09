@@ -133,7 +133,7 @@
         
         <div class="flex items-center gap-2 md:gap-4 shrink-0">
             <div class="bg-white p-1 rounded-full flex gap-1 border-2 border-[#ffd1dc] shadow-sm">
-                <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn active text-[10px] md:text-xs px-3 py-1">中文</button>
+                <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn text-[10px] md:text-xs px-3 py-1">中文</button>
                 <button onclick="setLanguage('ja')" id="btn-ja" class="lang-btn text-[10px] md:text-xs px-3 py-1">日本語</button>
                 <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-[10px] md:text-xs px-3 py-1">EN</button>
             </div>
@@ -193,7 +193,6 @@
         </div>
     </section>
 
-    <!-- 篩選列與搜尋列 -->
     <section class="px-6 md:px-12 max-w-[90rem] mx-auto w-full mb-10 relative z-10">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div id="filter-container" class="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 flex-grow">
@@ -201,7 +200,6 @@
             </div>
             
             <div class="flex flex-col sm:flex-row gap-3 items-center w-full lg:w-auto shrink-0">
-                <!-- 新增：模糊搜尋輸入框 -->
                 <div class="relative w-full sm:w-64">
                     <input type="text" id="search-input" placeholder="搜尋標題或分類..." class="w-full px-4 py-2 pl-10 rounded-full border-2 border-[#ffd1dc] focus:border-[#ffb3c6] outline-none font-round text-sm text-[#5c4d53] transition-colors" onkeyup="renderGallery()">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#ffb3c6] text-sm">🔍</span>
@@ -235,7 +233,6 @@
         </div>
 
         <div class="mt-6 sm:mt-8 z-50 flex flex-col sm:flex-row items-center gap-4">
-            <!-- 新增：換裝按鈕 -->
             <button onclick="changeOutfit()" class="px-8 py-3 rounded-full bg-white text-[#ffb3c6] border-2 border-[#ffb3c6] font-round text-sm sm:text-base hover:bg-[#fff0f3] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.3)] flex items-center gap-2 hover:scale-105 active:scale-95">
                 <span>🪄</span>
                 <span id="modal-change-text" class="font-black">換裝</span>
@@ -301,10 +298,18 @@
             }
         };
 
-        let currentLang = 'zh';
+        // --- 根據瀏覽器自動判斷預設語言 ---
+        function detectBrowserLanguage() {
+            const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+            if (browserLang.includes('zh')) return 'zh'; // 包含 zh-TW, zh-CN 等
+            if (browserLang.includes('en')) return 'en'; // 包含 en-US, en-GB 等
+            return 'ja'; // 無法判定或非中英文，一律預設為日文
+        }
+
+        let currentLang = detectBrowserLanguage(); 
         let currentCategory = 'all';
         let currentDisplayList = []; 
-        let currentModalItem = null; // 用來記錄當前預覽的圖片物件
+        let currentModalItem = null; 
 
         function shuffleArray(array) {
             let currentIndex = array.length, randomIndex;
@@ -331,7 +336,9 @@
         function setLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
+            // 確保對應按鈕存在再加入 active
+            const targetBtn = document.getElementById('btn-' + lang);
+            if(targetBtn) targetBtn.classList.add('active');
 
             const t = translations[lang];
             document.getElementById('nav-yt-text').textContent = t.navYt;
@@ -385,10 +392,8 @@
             gallery.innerHTML = ''; 
 
             currentDisplayList.forEach(item => {
-                // 1. 分類過濾
                 if (currentCategory !== 'all' && item.tag.category !== currentCategory) return;
 
-                // 2. 模糊搜尋過濾
                 let matchSearch = true;
                 if (query) {
                     const catTextZh = categoryDictionary[item.tag.category].zh.toLowerCase();
@@ -435,7 +440,6 @@
             });
         }
 
-        // 修改 openModal，改為傳入 ID 以便記錄當前項目狀態
         function openModal(itemId) {
             currentModalItem = wallpaperDatabase.find(i => i.id === itemId);
             if(!currentModalItem) return;
@@ -459,28 +463,23 @@
             }, 20);
         }
 
-        // 新增：換裝動畫與切換邏輯
         function changeOutfit() {
             if(!currentModalItem) return;
             
-            // 找出相同分類，且不包含當前這張的其他圖片
             const sameCatItems = wallpaperDatabase.filter(i => 
                 i.tag.category === currentModalItem.tag.category && i.id !== currentModalItem.id
             );
             
-            if(sameCatItems.length === 0) return; // 如果該分類沒有其他圖片則無作用
+            if(sameCatItems.length === 0) return; 
             
-            // 隨機抽選一張
             const nextItem = sameCatItems[Math.floor(Math.random() * sameCatItems.length)];
             currentModalItem = nextItem;
             
             const modalImg = document.getElementById('modal-image');
             
-            // 縮小、透明、稍微旋轉的退場動畫
             modalImg.classList.remove('opacity-100', 'scale-100');
             modalImg.classList.add('opacity-0', 'scale-50', 'rotate-12');
             
-            // 等待退場動畫結束後更換圖片再進場
             setTimeout(() => {
                 let previewUrl = `https://drive.google.com/thumbnail?id=${nextItem.fileId}&sz=w1920`;
                 let downloadUrl = `https://drive.google.com/uc?export=download&id=${nextItem.fileId}`;
@@ -488,11 +487,9 @@
                 modalImg.src = previewUrl;
                 document.getElementById('modal-download-btn').href = downloadUrl;
                 
-                // 取消退場狀態，執行進場彈跳效果
                 modalImg.classList.remove('opacity-0', 'scale-50', 'rotate-12');
                 modalImg.classList.add('opacity-100', 'scale-110');
                 
-                // 恢復正常大小
                 setTimeout(() => {
                     modalImg.classList.remove('scale-110');
                     modalImg.classList.add('scale-100');
@@ -513,7 +510,6 @@
                 modal.classList.add('hidden');
                 document.body.classList.remove('modal-open');
                 modalImg.src = ''; 
-                // 清除旋轉狀態避免下次開起怪怪的
                 modalImg.classList.remove('rotate-12');
                 currentModalItem = null;
             }, 300);
@@ -523,6 +519,7 @@
             if (typeof wallpaperDatabase !== 'undefined') {
                 currentDisplayList = shuffleArray([...wallpaperDatabase]);
             }
+            // 載入時依據偵測到的語言進行初始化
             setLanguage(currentLang);
         };
     </script>
