@@ -1,491 +1,103 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWEET TREATS LABORATORY | 桌布分享平台</title>
+// wallpapers.js - SWEET TREATS LABORATORY 專屬圖片資料庫
+// ==========================================
+
+// 1. 獨立的分類對照表（統一管理所有分類的三語名稱）
+const categoryDictionary = {
+    strawberry_macaron: {
+        zh: "草莓馬卡龍",
+        ja: "いちごのマカロン",
+        en: "Strawberry Macaron"
+    },
+    peach_choco_tart: {
+        zh: "白桃黑巧克力塔",
+        ja: "白桃ダークチョコタルト",
+        en: "White Peach Dark Choco Tart"
+    }
+};
+
+// 2. 桌布資料庫 (已更新為你的 10 張新圖與新分類)
+const wallpaperDatabase = [
+    // 1~5: 草莓馬卡龍 Strawberry Macaron
+    { 
+        id: "001", 
+        tag: {
+            category: "strawberry_macaron",
+            styleDesc: { zh: "夢幻甜點 / 午茶時光", ja: "夢のスイーツ / ティータイム", en: "Dreamy Sweets / Tea Time" }
+        },
+        fileId: "1hBT4laW0yxGdWkToKA6jw62pMBUQ1TLM" 
+    },
+    { 
+        id: "002", 
+        tag: {
+            category: "strawberry_macaron",
+            styleDesc: { zh: "軟萌日常 / 治癒陪伴", ja: "ふわふわ日常 / 癒しの寄り添い", en: "Fluffy Daily / Healing Companion" }
+        },
+        fileId: "1jGqKLWg5l3J_xMFmEnzYVVkY2ZOuiPmq" 
+    },
+    { 
+        id: "003", 
+        tag: {
+            category: "strawberry_macaron",
+            styleDesc: { zh: "粉彩光影 / 溫柔色調", ja: "パステルの光 / 優しい色合い", en: "Pastel Light / Gentle Tones" }
+        },
+        fileId: "1IgW-5fo62Oj02UWu1cntXKpXEagq5UbY" 
+    },
+    { 
+        id: "004", 
+        tag: {
+            category: "strawberry_macaron",
+            styleDesc: { zh: "溫馨角落 / 寧靜空間", ja: "温かいコーナー / 静かな空間", en: "Cozy Corner / Peaceful Space" }
+        },
+        fileId: "1zHb2oqCcXOuaeqaIOCS65ynxmX20EeHc" 
+    },
+    { 
+        id: "005", 
+        tag: {
+            category: "strawberry_macaron",
+            styleDesc: { zh: "甜蜜氛圍 / 舒壓放鬆", ja: "甘い雰囲気 / リラックス", en: "Sweet Vibe / Relaxing" }
+        },
+        fileId: "18A5tEiK93-nTZnINhlkf_sVtKM7Qseqj" 
+    },
     
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
-                        mono: ['"Nunito"', 'sans-serif'],
-                    },
-                    colors: {
-                        sweetBg: '#fff5f7',
-                        cardBg: '#ffffff',
-                        sweetAccent: '#ffb3c6',
-                        sweetText: '#5c4d53',
-                        sweetBorder: '#ffd1dc'
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #fff5f7;
-            color: #5c4d53;
-            font-family: 'Zen Maru Gothic', sans-serif;
-            /* Sweater Argyle Pattern */
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 179, 198, 0.15) 0%, transparent 70%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23ffe4e8' opacity='0.5'/%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' stroke='%23ffb3c6' stroke-width='1' stroke-dasharray='4 2' fill='none'/%3E%3Cpath d='M0 0L60 60M60 0L0 60' stroke='%23ffb3c6' stroke-width='1' stroke-dasharray='4 2' opacity='0.3'/%3E%3C/svg%3E");
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        .font-round {
-            font-weight: 900;
-            letter-spacing: 0.02em;
-        }
-
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px dashed #ffd1dc;
-        }
-
-        .sweet-card {
-            background-color: #ffffff;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 2px solid #ffd1dc;
-            box-shadow: 0 10px 20px -5px rgba(255, 179, 198, 0.3);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .sweet-card:hover {
-            transform: translateY(-8px) rotate(-1deg);
-            box-shadow: 0 15px 30px -5px rgba(255, 179, 198, 0.5);
-            border-color: #ffb3c6;
-        }
-
-        .lang-btn {
-            border-radius: 9999px;
-            transition: all 0.2s;
-            color: #ff8fab;
-            font-weight: 700;
-        }
-        .lang-btn.active {
-            background-color: #ffb3c6;
-            color: #ffffff;
-            font-weight: 900;
-        }
-
-        .filter-btn {
-            padding: 8px 20px;
-            border-radius: 9999px;
-            font-size: 0.9rem;
-            border: 2px dashed #ffd1dc;
-            background-color: #ffffff;
-            color: #ff8fab;
-            transition: all 0.2s;
-            font-weight: 700;
-            height: 40px;
-            display: flex;
-            align-items: center;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background-color: #ffb3c6;
-            color: #ffffff;
-            border: 2px solid #ffb3c6;
-            font-weight: 900;
-            box-shadow: 0 5px 15px rgba(255, 179, 198, 0.4);
-        }
-
-        .cute-clock {
-            color: #ffb3c6;
-            text-shadow: 
-                -2px -2px 0 #fff,
-                 2px -2px 0 #fff,
-                -2px  2px 0 #fff,
-                 2px  2px 0 #fff,
-                 0px  4px 0px rgba(255, 179, 198, 1);
-        }
-
-        body.modal-open { overflow: hidden; }
-    </style>
-    
-    <!-- 引入圖片設定 js 檔案 -->
-    <script src="wallpapers.js"></script>
-</head>
-<body class="min-h-screen flex flex-col selection:bg-[#ffb3c6] selection:text-white">
-
-    <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-4 md:px-12 py-3 flex justify-between items-center gap-2">
-        <a href="#" class="font-round text-sm md:text-xl text-[#5c4d53] flex items-center gap-2 shrink-0">
-            <span>🎀</span>
-            <span class="hidden min-[400px]:inline">SWEET TREATS LABORATORY</span>
-            <span class="inline min-[400px]:hidden">SWEET TREATS</span>
-        </a>
-        
-        <div class="flex items-center gap-2 md:gap-4 shrink-0">
-            <div class="bg-white p-1 rounded-full flex gap-1 border-2 border-[#ffd1dc] shadow-sm">
-                <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn active text-[10px] md:text-xs px-3 py-1">中文</button>
-                <button onclick="setLanguage('ja')" id="btn-ja" class="lang-btn text-[10px] md:text-xs px-3 py-1">日本語</button>
-                <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-[10px] md:text-xs px-3 py-1">EN</button>
-            </div>
-            <a href="https://www.youtube.com/channel/UC4js-s7BYKm4dGYFyWQUCSw" target="_blank" class="bg-[#ffb3c6] text-white hover:bg-[#ff8fab] px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-sm font-round flex items-center transition-all shadow-[0_4px_10px_rgba(255,179,198,0.4)] whitespace-nowrap">
-                <span id="nav-yt-text">YouTube 頻道</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- 頁首風格背景區塊 -->
-    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-16 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
-        
-        <!-- Background Image from Google Drive -->
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95" style="background-image: url('https://drive.google.com/thumbnail?id=1FBCo4K8lPXGpDIWTBMs1Wfz3CpKC74Yx&sz=w1920');"></div>
-            <!-- 底部漸層融合背景色 -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#fff5f7] via-[#fff5f7]/30 to-transparent"></div>
-            <!-- 頂部微白遮罩讓導航列文字不被吃掉 -->
-            <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent h-32"></div>
-        </div>
-
-        <header class="relative z-10 px-6 text-center max-w-4xl mx-auto w-full">
-            <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#5c4d53] leading-tight drop-shadow-md bg-white/70 inline-block px-8 py-3 rounded-[32px] backdrop-blur-sm border-2 border-white/60 shadow-sm">
-                SWEET TREATS LABORATORY
-            </h1>
-        </header>
-    </section>
-
-    <!-- 頻道理念區塊 (ABOUT) -->
-    <section class="px-6 max-w-3xl mx-auto w-full mb-8 relative z-10 -mt-16">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-8 md:p-10 rounded-[32px] shadow-sm flex flex-col justify-center">
-            
-            <div class="flex items-center gap-3 mb-6 pl-1">
-                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
-                    ABOUT
-                </span>
-                <h2 id="phil-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
-                    頻道理念
-                </h2>
-            </div>
-            
-            <!-- 文字螢光筆高光區塊 -->
-            <div class="flex flex-col items-start gap-2.5 font-round font-bold text-sm md:text-base pl-1">
-                <span id="phil-text1" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
-                    在忙碌的生活中，尋找一絲甜蜜的療癒...
-                </span>
-                <span id="phil-text2" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
-                    感受 可愛的魅力 與 溫暖
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 影片展示區塊 (MUSIC) -->
-    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 md:p-8 rounded-[32px] shadow-sm flex flex-col justify-center">
-            
-            <div class="flex items-center gap-3 mb-6 pl-1">
-                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
-                    MUSIC
-                </span>
-                <h2 id="music-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
-                    本週推薦曲目
-                </h2>
-            </div>
-            
-            <!-- YouTube 嵌入框架 (更新為新影片 TZpzeNKbI3I) -->
-            <div class="w-full aspect-video rounded-[20px] overflow-hidden border-4 border-[#fff0f3] shadow-inner bg-[#fff5f7]">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZpzeNKbI3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- 時鐘區塊 -->
-    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
-        <div class="relative bg-white/90 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 rounded-[32px] shadow-sm flex flex-col items-center justify-center">
-            <div class="flex justify-between w-full max-w-[320px] mb-2 z-10 opacity-60">
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">SYS.STATUS: SWEET</span>
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">LOCAL TIME</span>
-            </div>
-            
-            <div id="cute-clock" class="font-mono text-5xl md:text-7xl font-black text-[#ffb3c6] cute-clock z-10 flex items-center justify-center w-full py-2 tracking-wider">
-                18:40:21
-            </div>
-
-            <div class="flex justify-between w-full max-w-[320px] mt-2 z-10 opacity-60">
-                <span id="cute-date" class="text-xs text-[#ff8fab] font-mono font-bold">YYYY.MM.DD</span>
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">LAB-SYNC</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 篩選列 -->
-    <section class="px-6 md:px-12 max-w-[90rem] mx-auto w-full mb-10 relative z-10">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
-            <div id="filter-container" class="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 flex-grow">
-                <!-- 透過 JS 自動生成 -->
-            </div>
-            
-            <button onclick="shuffleGallery()" class="shrink-0 flex items-center gap-2 px-6 h-[40px] bg-white text-[#ff8fab] font-round text-[0.9rem] rounded-full border-2 border-[#ffd1dc] hover:border-[#ffb3c6] hover:bg-[#fff0f3] transition-all shadow-sm active:scale-95 group">
-                <span class="group-hover:rotate-180 transition-transform duration-500">✨</span>
-                <span id="shuffle-text" class="font-bold">魔法洗牌</span>
-            </button>
-        </div>
-    </section>
-
-    <main class="flex-grow max-w-[90rem] mx-auto px-6 md:px-12 lg:px-24 pb-32 w-full relative z-10">
-        <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 圖片透過 JS 自動渲染 -->
-        </div>
-    </main>
-
-    <!-- 圖片預覽彈出視窗 (Modal) -->
-    <div id="image-modal" class="fixed inset-0 z-[100] hidden flex-col items-center justify-center p-4 sm:p-8 bg-[#5c4d53]/60 backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="if(event.target === this) closeModal()">
-        
-        <button onclick="closeModal()" class="absolute top-6 right-6 sm:top-10 sm:right-10 text-white hover:text-[#ffb3c6] hover:scale-110 transition-all cursor-pointer z-50 bg-[#ffb3c6]/80 p-3 rounded-full border-2 border-white shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-
-        <div class="relative w-full max-w-6xl max-h-[80vh] flex justify-center items-center pointer-events-none">
-            <img id="modal-image" src="" alt="Preview" class="max-w-full max-h-[75vh] object-contain border-4 border-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto">
-        </div>
-
-        <div class="mt-6 sm:mt-8 z-50 flex flex-col items-center gap-4">
-            <a id="modal-download-btn" href="#" target="_blank" class="px-8 py-3 rounded-full bg-[#ffb3c6] text-white border-2 border-white font-round text-sm sm:text-base hover:bg-[#ff8fab] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.5)] flex items-center gap-2 hover:scale-105 active:scale-95">
-                <span>🎀</span>
-                <span id="modal-download-text" class="font-black">下載桌布</span>
-            </a>
-        </div>
-    </div>
-
-    <footer class="py-12 px-6 text-center border-t-2 border-[#ffd1dc] text-[#7d6b71] text-xs font-round bg-white flex flex-col gap-3 items-center relative z-10">
-        <div>&copy; 2026 SWEET TREATS LABORATORY. All Sweets Reserved.</div>
-        <div id="footer-copyright" class="text-[#ff8fab] bg-[#fff5f7] px-4 py-2 rounded-full border-2 border-[#ffd1dc] inline-block font-bold">
-            圖片資源僅限私人非商業用途使用
-        </div>
-    </footer>
-
-    <script>
-        const translations = {
-            zh: {
-                navYt: "YouTube 頻道",
-                philTitle: "頻道理念",
-                philText1: "在忙碌的生活中，尋找一絲甜蜜的療癒...",
-                philText2: "感受 可愛的魅力 與 溫暖",
-                musicTitle: "本週推薦曲目",
-                allCategory: "全部甜點 (All)",
-                download: "下載",
-                shuffle: "魔法洗牌",
-                modalDown: "下載桌布",
-                copyright: "圖片資源僅限私人非商業用途使用"
-            },
-            ja: {
-                navYt: "YouTube チャンネル",
-                philTitle: "チャンネルの理念",
-                philText1: "忙しい日常の中で、少しの甘い癒しを見つける...",
-                philText2: "かわいい魅力と温もりを感じて",
-                musicTitle: "おすすめの曲",
-                allCategory: "すべて (All)",
-                download: "ダウンロード",
-                shuffle: "魔法のシャッフル",
-                modalDown: "壁紙をダウンロード",
-                copyright: "画像リソースは私的かつ非商業目的でのみ使用可能です"
-            },
-            en: {
-                navYt: "YouTube Channel",
-                philTitle: "Philosophy",
-                philText1: "Finding a touch of sweet healing in a busy life...",
-                philText2: "Feel the cute charm and warmth",
-                musicTitle: "Featured Music",
-                allCategory: "All Sweets",
-                download: "Download",
-                shuffle: "Magic Shuffle",
-                modalDown: "Download Wallpaper",
-                copyright: "Image resources are for personal and non-commercial use only"
-            }
-        };
-
-        let currentLang = 'zh';
-        let currentCategory = 'all';
-        let currentDisplayList = []; 
-
-        function shuffleArray(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex != 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-            }
-            return array;
-        }
-
-        function shuffleGallery() {
-            currentDisplayList = shuffleArray([...currentDisplayList]);
-            const gallery = document.getElementById('gallery');
-            gallery.style.opacity = '0';
-            gallery.style.transition = 'opacity 0.3s ease-in-out';
-            
-            setTimeout(() => {
-                renderGallery();
-                gallery.style.opacity = '1';
-            }, 300);
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
-
-            const t = translations[lang];
-            document.getElementById('nav-yt-text').textContent = t.navYt;
-            
-            // 文字更新
-            document.getElementById('phil-title').textContent = t.philTitle;
-            document.getElementById('phil-text1').textContent = t.philText1;
-            document.getElementById('phil-text2').textContent = t.philText2;
-            document.getElementById('music-title').textContent = t.musicTitle;
-            
-            document.getElementById('shuffle-text').textContent = t.shuffle;
-            
-            if(document.getElementById('modal-download-text')) document.getElementById('modal-download-text').textContent = t.modalDown;
-            if(document.getElementById('footer-copyright')) document.getElementById('footer-copyright').textContent = t.copyright;
-            
-            renderFilters();
-            renderGallery();
-        }
-
-        function filterCategory(category, element) {
-            currentCategory = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            if (element) {
-                element.classList.add('active');
-            } else {
-                const target = document.getElementById('filter-' + category);
-                if (target) target.classList.add('active');
-            }
-            renderGallery();
-        }
-
-        function renderFilters() {
-            const container = document.getElementById('filter-container');
-            const t = translations[currentLang];
-            let html = `<button onclick="filterCategory('all', this)" id="filter-all" class="filter-btn ${currentCategory === 'all' ? 'active' : ''}">${t.allCategory}</button>`;
-
-            if (typeof categoryDictionary !== 'undefined') {
-                for (const [catKey, names] of Object.entries(categoryDictionary)) {
-                    let label = names[currentLang] || names.zh;
-                    html += `<button onclick="filterCategory('${catKey}', this)" id="filter-${catKey}" class="filter-btn ${currentCategory === catKey ? 'active' : ''}">${label}</button>`;
-                }
-            }
-            container.innerHTML = html;
-        }
-
-        function renderGallery() {
-            const gallery = document.getElementById('gallery');
-            const t = translations[currentLang];
-            gallery.innerHTML = ''; 
-
-            currentDisplayList.forEach(item => {
-                if (currentCategory !== 'all' && item.tag.category !== currentCategory) return;
-
-                let previewUrl = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1920`;
-                let downloadUrl = `https://drive.google.com/uc?export=download&id=${item.fileId}`;
-                let styleDescText = item.tag.styleDesc[currentLang] || item.tag.styleDesc.zh;
-
-                const cardHTML = `
-                <div class="sweet-card flex flex-col group cursor-pointer" onclick="openModal('${previewUrl}', '${downloadUrl}')">
-                    <div class="relative w-full pt-[56.25%] overflow-hidden bg-[#fff0f3]">
-                        <img src="${previewUrl}" alt="Sweet Wallpaper ${item.id}" loading="lazy" 
-                             class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                             onerror="this.src='https://placehold.co/800x450/fff0f3/ffb3c6?text=Sweet+Treats'">
-                        
-                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
-                        
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <div class="bg-white/80 p-4 rounded-full text-[#ffb3c6] shadow-lg transform scale-50 group-hover:scale-100 transition-transform duration-300">
-                                <span class="text-3xl">🤍</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-5 flex justify-between items-center bg-white flex-grow border-t-2 border-[#ffd1dc] border-dashed">
-                        <div><span class="text-sm text-[#ff8fab] font-round font-bold">${styleDescText}</span></div>
-                        <a href="${downloadUrl}" target="_blank" download="Sweet_WP_${item.id}.png" 
-                           class="px-4 py-1.5 rounded-full bg-[#ffb3c6] text-white text-xs font-round font-bold hover:bg-[#ff8fab] transition-all shadow-md relative z-10" onclick="event.stopPropagation();">
-                            ${t.download}
-                        </a>
-                    </div>
-                </div>`;
-                gallery.innerHTML += cardHTML;
-            });
-        }
-
-        function openModal(imgSrc, downloadUrl) {
-            const modal = document.getElementById('image-modal');
-            const modalImg = document.getElementById('modal-image');
-            document.getElementById('modal-download-btn').href = downloadUrl;
-            modalImg.src = imgSrc;
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.classList.add('modal-open');
-            
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalImg.classList.remove('opacity-0', 'scale-95');
-                modalImg.classList.add('opacity-100', 'scale-100');
-            }, 20);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('image-modal');
-            const modalImg = document.getElementById('modal-image');
-            
-            modal.classList.add('opacity-0');
-            modalImg.classList.remove('opacity-100', 'scale-100');
-            modalImg.classList.add('opacity-0', 'scale-95');
-            
-            setTimeout(() => {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
-                document.body.classList.remove('modal-open');
-                modalImg.src = ''; 
-            }, 300);
-        }
-
-        function initCuteClock() {
-            const clockEl = document.getElementById('cute-clock');
-            const dateEl = document.getElementById('cute-date');
-            
-            function updateClock() {
-                const now = new Date();
-                const h = String(now.getHours()).padStart(2, '0');
-                const m = String(now.getMinutes()).padStart(2, '0');
-                const s = String(now.getSeconds()).padStart(2, '0');
-                
-                clockEl.textContent = `${h}:${m}:${s}`;
-                
-                const y = now.getFullYear();
-                const mo = String(now.getMonth() + 1).padStart(2, '0');
-                const d = String(now.getDate()).padStart(2, '0');
-                dateEl.textContent = `${y}.${mo}.${d}`;
-            }
-            setInterval(updateClock, 1000);
-            updateClock(); 
-        }
-
-        window.onload = function() { 
-            if (typeof wallpaperDatabase !== 'undefined') {
-                currentDisplayList = shuffleArray([...wallpaperDatabase]);
-            }
-            setLanguage(currentLang);
-            initCuteClock(); 
-        };
-    </script>
-</body>
-</html>
+    // 6~10: 白桃黑巧克力塔 White Peach Dark Choco Tart
+    { 
+        id: "006", 
+        tag: {
+            category: "peach_choco_tart",
+            styleDesc: { zh: "特製甜點 / 療癒時光", ja: "特製スイーツ / 癒しタイム", en: "Special Sweets / Healing Time" }
+        },
+        fileId: "1Rw_veB-7bBXbqvsBwRRTPOpRC7ShP5Vd" 
+    },
+    { 
+        id: "007", 
+        tag: {
+            category: "peach_choco_tart",
+            styleDesc: { zh: "歡樂小萌物 / 快樂時光", ja: "楽しい可愛いもの / ハッピータイム", en: "Joyful Cuties / Happy Time" }
+        },
+        fileId: "1yOTzBn4LU5LaP1pb8AeamHubZ3T4rgLl" 
+    },
+    { 
+        id: "008", 
+        tag: {
+            category: "peach_choco_tart",
+            styleDesc: { zh: "夢幻色彩 / 輕柔氛圍", ja: "夢の色 / 柔らかい雰囲気", en: "Dreamy Colors / Soft Vibe" }
+        },
+        fileId: "1ZT8fR926WwQxrpkICuBiolOM9I_8N3sC" 
+    },
+    { 
+        id: "009", 
+        tag: {
+            category: "peach_choco_tart",
+            styleDesc: { zh: "秘密基地 / 個人空間", ja: "秘密の基地 / プライベート空間", en: "Secret Base / Private Space" }
+        },
+        fileId: "1tn3uTII1H7E5AFTsawq3xSx06lD31R8B" 
+    },
+    { 
+        id: "010", 
+        tag: {
+            category: "peach_choco_tart",
+            styleDesc: { zh: "萌寵派對 / 可愛爆擊", ja: "ペットパーティー / 可愛さ爆発", en: "Pet Party / Cuteness Overload" }
+        },
+        fileId: "1EjUxTWCH4tjMjmYpHwgEvqOUBGpA_j4U" 
+    }
+];
