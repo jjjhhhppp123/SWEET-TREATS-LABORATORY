@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- 網頁標籤圖示 (Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍰</text></svg>">
+    
+    <!-- Open Graph (OG) Meta 標籤，告訴 YouTube/Line/FB 顯示什麼縮圖 -->
+    <meta property="og:title" content="SWEET TREATS LABORATORY | 桌布分享平台" />
+    <meta property="og:description" content="尋找一絲甜蜜的療癒...感受可愛的魅力與溫暖。專屬桌布與耐久BGM分享平台。" />
+    <!-- 這裡可以放一張你的主視覺圖作為社群分享縮圖，預設先放你的橫幅圖 -->
+    <meta property="og:image" content="https://drive.google.com/thumbnail?id=1FBCo4K8lPXGpDIWTBMs1Wfz3CpKC74Yx&sz=w1200" />
+    <meta property="og:type" content="website" />
     <title>SWEET TREATS LABORATORY | 桌布分享平台</title>
     
     <!-- 字體與 Bootstrap Icons -->
@@ -35,7 +46,6 @@
             background-color: #121212;
             color: #e0e0e0;
             font-family: 'Zen Maru Gothic', sans-serif;
-            /* 全域網格背景 */
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(255, 143, 171, 0.1) 0%, transparent 70%),
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23181818' opacity='0.5'/%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' stroke='%23333333' stroke-width='1' stroke-dasharray='4 2' fill='none'/%3E%3Cpath d='M0 0L60 60M60 0L0 60' stroke='%23333333' stroke-width='1' stroke-dasharray='4 2' opacity='0.3'/%3E%3C/svg%3E");
@@ -49,8 +59,24 @@
             font-weight: 900;
             letter-spacing: 0.02em;
         }
+        
+        /* 糖果風格文字動畫 */
+        .candy-text {
+            background: linear-gradient(to right, #ffb3c6, #ffd1dc, #f6e58d, #badc58, #c2e9fb, #cbaacb, #ffb3c6);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: candyShine 4s linear infinite;
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.9);
+            filter: drop-shadow(0px 4px 8px rgba(255, 179, 198, 0.4));
+            display: inline-block;
+        }
 
-        /* 導覽列改為暗色毛玻璃 */
+        @keyframes candyShine {
+            to { background-position: 200% center; }
+        }
+
         .glass-nav {
             background: rgba(26, 26, 26, 0.85);
             backdrop-filter: blur(12px);
@@ -169,9 +195,9 @@
         <header class="relative z-10 px-6 text-center max-w-4xl mx-auto w-full flex flex-col items-center">
             <div class="bg-[#1a1a1a]/85 flex flex-col items-center px-10 py-6 rounded-[32px] backdrop-blur-md border-2 border-[#333] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                 <span id="header-subtitle" class="text-[#ffb3c6] font-bold tracking-[0.2em] text-xs md:text-sm mb-3 font-round opacity-90 uppercase">桌布分享網站</span>
-                <h1 class="font-round text-4xl md:text-5xl lg:text-6xl leading-tight drop-shadow-md text-center">
-                    <span class="block text-[#ffb3c6] mb-1">SWEET TREATS</span>
-                    <span class="block text-[#e0e0e0]">LABORATORY</span>
+                <h1 class="font-round text-4xl md:text-5xl lg:text-6xl leading-tight text-center">
+                    <span class="candy-text mb-2 pb-1">SWEET TREATS</span>
+                    <span class="block text-[#e0e0e0] drop-shadow-md">LABORATORY</span>
                 </h1>
             </div>
         </header>
