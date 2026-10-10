@@ -12,10 +12,15 @@ const categoryDictionary = {
         zh: "白桃黑巧克力塔",
         ja: "白桃ダークチョコタルト",
         en: "White Peach Dark Choco Tart"
+    },
+    marshmallow_milk_ice_cream: {
+        zh: "棉花糖牛奶冰淇淋",
+        ja: "マシュマロミルクアイス",
+        en: "Marshmallow Milk Ice Cream"
     }
 };
 
-// 2. 桌布資料庫 (已更新為你的 10 張新圖與新分類)
+// 2. 桌布資料庫 
 const wallpaperDatabase = [
     // 1~5: 草莓馬卡龍 Strawberry Macaron
     { 
@@ -99,5 +104,47 @@ const wallpaperDatabase = [
             styleDesc: { zh: "萌寵派對 / 可愛爆擊", ja: "ペットパーティー / 可愛さ爆発", en: "Pet Party / Cuteness Overload" }
         },
         fileId: "1EjUxTWCH4tjMjmYpHwgEvqOUBGpA_j4U" 
+    },
+
+    // 11~15: 棉花糖牛奶冰淇淋 Marshmallow Milk Ice Cream
+    { 
+        id: "011", 
+        tag: {
+            category: "marshmallow_milk_ice_cream",
+            styleDesc: { zh: "雲朵般柔軟 / 清涼夏日", ja: "雲のように柔らかい / 涼しい夏", en: "Cloud-like Softness / Cool Summer" }
+        },
+        fileId: "1mp31ApeU0QpminZ6WuWvXkVorY5qL-H6" 
+    },
+    { 
+        id: "012", 
+        tag: {
+            category: "marshmallow_milk_ice_cream",
+            styleDesc: { zh: "輕柔奶香 / 療癒甜點", ja: "優しいミルクの香り / 癒しのスイーツ", en: "Gentle Milky Scent / Healing Dessert" }
+        },
+        fileId: "1ZJSa2y5vET5YuYrC_h8Y2io_je6eg0nA" 
+    },
+    { 
+        id: "013", 
+        tag: {
+            category: "marshmallow_milk_ice_cream",
+            styleDesc: { zh: "融化的甜蜜 / 快樂時光", ja: "とろける甘さ / ハッピータイム", en: "Melting Sweetness / Happy Time" }
+        },
+        fileId: "1L6JHzZkLDcpOjmRuH9gA-ffjXiyraQ7G" 
+    },
+    { 
+        id: "014", 
+        tag: {
+            category: "marshmallow_milk_ice_cream",
+            styleDesc: { zh: "悠閒午後 / 冰涼享受", ja: "のんびり午後 / 涼しい楽しみ", en: "Leisurely Afternoon / Cool Enjoyment" }
+        },
+        fileId: "19LkLJF8seiRgmHLr5IWAmDyU1L3RWIzH" 
+    },
+    { 
+        id: "015", 
+        tag: {
+            category: "marshmallow_milk_ice_cream",
+            styleDesc: { zh: "夢幻冰淇淋 / 少女心", ja: "夢のアイスクリーム / 乙女心", en: "Dreamy Ice Cream / Girly Heart" }
+        },
+        fileId: "1dCzbBt67g67rt1lle5dMG-eISM8aisf6" 
     }
 ];
