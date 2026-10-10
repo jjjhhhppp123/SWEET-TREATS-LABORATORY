@@ -113,96 +113,27 @@
         }
 
         body.modal-open { overflow: hidden; }
+        
+        /* 換裝動畫專用 */
+        .outfit-transition {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
     </style>
     
-    <!-- 為了線上預覽，直接將圖片設定寫在 HTML 中 -->
-    <script>
-        // 單一主題分類
-        const categoryDictionary = {
-            macaron: {
-                zh: "草莓馬卡龍",
-                ja: "いちごのマカロン",
-                en: "Strawberry Macaron"
-            }
-        };
-
-        // 桌布資料庫：格式已更新為 "主題名稱 (服裝/畫面風格)"
-        const wallpaperDatabase = [
-            { 
-                id: "001", 
-                tag: {
-                    category: "macaron",
-                    styleDesc: { 
-                        zh: "草莓馬卡龍 (夢幻甜點)", 
-                        ja: "いちごのマカロン (夢のスイーツ)", 
-                        en: "Strawberry Macaron (Dreamy Sweets)" 
-                    }
-                },
-                fileId: "1y6sX1ArnU0vNGjKHUy-RuqXxdg5DF4RZ" 
-            },
-            { 
-                id: "002", 
-                tag: {
-                    category: "macaron",
-                    styleDesc: { 
-                        zh: "草莓馬卡龍 (軟萌日常)", 
-                        ja: "いちごのマカロン (ふわふわ日常)", 
-                        en: "Strawberry Macaron (Fluffy Daily)" 
-                    }
-                },
-                fileId: "1OM8cMNhT6gGyvDsWK14XT9EYufBx1FiB" 
-            },
-            { 
-                id: "003", 
-                tag: {
-                    category: "macaron",
-                    styleDesc: { 
-                        zh: "草莓馬卡龍 (粉彩光影)", 
-                        ja: "いちごのマカロン (パステルの光)", 
-                        en: "Strawberry Macaron (Pastel Light)" 
-                    }
-                },
-                fileId: "1gLgKeLcycxS2P2LfBkRCFgt6xIBfJmuy" 
-            },
-            { 
-                id: "004", 
-                tag: {
-                    category: "macaron",
-                    styleDesc: { 
-                        zh: "草莓馬卡龍 (溫馨角落)", 
-                        ja: "いちごのマカロン (温かいコーナー)", 
-                        en: "Strawberry Macaron (Cozy Corner)" 
-                    }
-                },
-                fileId: "1FmMircBSJBM0HkM7yNtu_Hx1a0yuB1_G" 
-            },
-            { 
-                id: "005", 
-                tag: {
-                    category: "macaron",
-                    styleDesc: { 
-                        zh: "草莓馬卡龍 (甜蜜氛圍)", 
-                        ja: "いちごのマカロン (甘い雰囲気)", 
-                        en: "Strawberry Macaron (Sweet Vibe)" 
-                    }
-                },
-                fileId: "1mJuzDgstfp7lRjI4OAXwjHqlloqUyvkR" 
-            }
-        ];
-    </script>
+    <script src="wallpapers.js"></script>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-[#ffb3c6] selection:text-white">
 
     <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-4 md:px-12 py-3 flex justify-between items-center gap-2">
         <a href="#" class="font-round text-sm md:text-xl text-[#5c4d53] flex items-center gap-2 shrink-0">
-            <!-- 左上角蝴蝶結已移除 -->
+            <span>🎀</span>
             <span class="hidden min-[400px]:inline">SWEET TREATS LABORATORY</span>
             <span class="inline min-[400px]:hidden">SWEET TREATS</span>
         </a>
         
         <div class="flex items-center gap-2 md:gap-4 shrink-0">
             <div class="bg-white p-1 rounded-full flex gap-1 border-2 border-[#ffd1dc] shadow-sm">
-                <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn active text-[10px] md:text-xs px-3 py-1">中文</button>
+                <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn text-[10px] md:text-xs px-3 py-1">中文</button>
                 <button onclick="setLanguage('ja')" id="btn-ja" class="lang-btn text-[10px] md:text-xs px-3 py-1">日本語</button>
                 <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-[10px] md:text-xs px-3 py-1">EN</button>
             </div>
@@ -211,28 +142,22 @@
             </a>
         </div>
     </nav>
-    <!-- 頁首風格背景區塊 -->
+
     <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-16 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
-        
-        <!-- Background Image from Google Drive -->
         <div class="absolute inset-0 z-0 overflow-hidden">
             <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95" style="background-image: url('https://drive.google.com/thumbnail?id=1FBCo4K8lPXGpDIWTBMs1Wfz3CpKC74Yx&sz=w1920');"></div>
-            <!-- 底部漸層融合背景色 -->
             <div class="absolute inset-0 bg-gradient-to-t from-[#fff5f7] via-[#fff5f7]/30 to-transparent"></div>
-            <!-- 頂部微白遮罩讓導航列文字不被吃掉 -->
             <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent h-32"></div>
         </div>
-
         <header class="relative z-10 px-6 text-center max-w-4xl mx-auto w-full">
             <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#5c4d53] leading-tight drop-shadow-md bg-white/70 inline-block px-8 py-3 rounded-[32px] backdrop-blur-sm border-2 border-white/60 shadow-sm">
                 SWEET TREATS LABORATORY
             </h1>
         </header>
     </section>
-    <!-- 頻道理念區塊 (ABOUT) -->
+
     <section class="px-6 max-w-3xl mx-auto w-full mb-8 relative z-10 -mt-16">
         <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-8 md:p-10 rounded-[32px] shadow-sm flex flex-col justify-center">
-            
             <div class="flex items-center gap-3 mb-6 pl-1">
                 <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
                     ABOUT
@@ -241,8 +166,6 @@
                     頻道理念
                 </h2>
             </div>
-            
-            <!-- 文字螢光筆高光區塊 -->
             <div class="flex flex-col items-start gap-2.5 font-round font-bold text-sm md:text-base pl-1">
                 <span id="phil-text1" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
                     在忙碌的生活中，尋找一絲甜蜜的療癒...
@@ -253,10 +176,9 @@
             </div>
         </div>
     </section>
-    <!-- 影片展示區塊 (MUSIC) -->
+
     <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
         <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 md:p-8 rounded-[32px] shadow-sm flex flex-col justify-center">
-            
             <div class="flex items-center gap-3 mb-6 pl-1">
                 <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
                     MUSIC
@@ -265,44 +187,32 @@
                     本週推薦曲目
                 </h2>
             </div>
-            
-            <!-- YouTube 嵌入框架 -->
             <div class="w-full aspect-video rounded-[20px] overflow-hidden border-4 border-[#fff0f3] shadow-inner bg-[#fff5f7]">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/sfsWp9Qq8oU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZpzeNKbI3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
-    <!-- 時鐘區塊 -->
-    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
-        <div class="relative bg-white/90 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 rounded-[32px] shadow-sm flex flex-col items-center justify-center">
-            <div class="flex justify-between w-full max-w-[320px] mb-2 z-10 opacity-60">
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">SYS.STATUS: SWEET</span>
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">LOCAL TIME</span>
-            </div>
-            
-            <div id="cute-clock" class="font-mono text-5xl md:text-7xl font-black text-[#ffb3c6] cute-clock z-10 flex items-center justify-center w-full py-2 tracking-wider">
-                18:40:21
-            </div>
 
-            <div class="flex justify-between w-full max-w-[320px] mt-2 z-10 opacity-60">
-                <span id="cute-date" class="text-xs text-[#ff8fab] font-mono font-bold">YYYY.MM.DD</span>
-                <span class="text-xs text-[#ff8fab] font-mono font-bold">LAB-SYNC</span>
-            </div>
-        </div>
-    </section>
-    <!-- 篩選列 -->
     <section class="px-6 md:px-12 max-w-[90rem] mx-auto w-full mb-10 relative z-10">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
-            <div id="filter-container" class="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3 flex-grow">
-                <!-- 透過 JS 自動生成 (現在只會顯示一個主類別) -->
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+            <div id="filter-container" class="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 flex-grow">
+                <!-- 透過 JS 自動生成 -->
             </div>
             
-            <button onclick="shuffleGallery()" class="shrink-0 flex items-center gap-2 px-6 h-[40px] bg-white text-[#ff8fab] font-round text-[0.9rem] rounded-full border-2 border-[#ffd1dc] hover:border-[#ffb3c6] hover:bg-[#fff0f3] transition-all shadow-sm active:scale-95 group">
-                <span class="group-hover:rotate-180 transition-transform duration-500">✨</span>
-                <span id="shuffle-text" class="font-bold">魔法洗牌</span>
-            </button>
+            <div class="flex flex-col sm:flex-row gap-3 items-center w-full lg:w-auto shrink-0">
+                <div class="relative w-full sm:w-64">
+                    <input type="text" id="search-input" placeholder="搜尋標題或分類..." class="w-full px-4 py-2 pl-10 rounded-full border-2 border-[#ffd1dc] focus:border-[#ffb3c6] outline-none font-round text-sm text-[#5c4d53] transition-colors" onkeyup="renderGallery()">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#ffb3c6] text-sm">🔍</span>
+                </div>
+                
+                <button onclick="shuffleGallery()" class="shrink-0 flex items-center gap-2 px-6 h-[40px] w-full sm:w-auto justify-center bg-white text-[#ff8fab] font-round text-[0.9rem] rounded-full border-2 border-[#ffd1dc] hover:border-[#ffb3c6] hover:bg-[#fff0f3] transition-all shadow-sm active:scale-95 group">
+                    <span class="group-hover:rotate-180 transition-transform duration-500">✨</span>
+                    <span id="shuffle-text" class="font-bold">魔法洗牌</span>
+                </button>
+            </div>
         </div>
     </section>
+
     <main class="flex-grow max-w-[90rem] mx-auto px-6 md:px-12 lg:px-24 pb-32 w-full relative z-10">
         <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- 圖片透過 JS 自動渲染 -->
@@ -318,17 +228,23 @@
             </svg>
         </button>
 
-        <div class="relative w-full max-w-6xl max-h-[80vh] flex justify-center items-center pointer-events-none">
-            <img id="modal-image" src="" alt="Preview" class="max-w-full max-h-[75vh] object-contain border-4 border-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto">
+        <div class="relative w-full max-w-6xl max-h-[75vh] flex justify-center items-center pointer-events-none">
+            <img id="modal-image" src="" alt="Preview" class="outfit-transition max-w-full max-h-[70vh] object-contain border-4 border-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] transform scale-95 opacity-0 pointer-events-auto">
         </div>
 
-        <div class="mt-6 sm:mt-8 z-50 flex flex-col items-center gap-4">
+        <div class="mt-6 sm:mt-8 z-50 flex flex-col sm:flex-row items-center gap-4">
+            <button onclick="changeOutfit()" class="px-8 py-3 rounded-full bg-white text-[#ffb3c6] border-2 border-[#ffb3c6] font-round text-sm sm:text-base hover:bg-[#fff0f3] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.3)] flex items-center gap-2 hover:scale-105 active:scale-95">
+                <span>🪄</span>
+                <span id="modal-change-text" class="font-black">換裝</span>
+            </button>
+
             <a id="modal-download-btn" href="#" target="_blank" class="px-8 py-3 rounded-full bg-[#ffb3c6] text-white border-2 border-white font-round text-sm sm:text-base hover:bg-[#ff8fab] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.5)] flex items-center gap-2 hover:scale-105 active:scale-95">
                 <span>🎀</span>
                 <span id="modal-download-text" class="font-black">下載桌布</span>
             </a>
         </div>
     </div>
+
     <footer class="py-12 px-6 text-center border-t-2 border-[#ffd1dc] text-[#7d6b71] text-xs font-round bg-white flex flex-col gap-3 items-center relative z-10">
         <div>&copy; 2026 SWEET TREATS LABORATORY. All Sweets Reserved.</div>
         <div id="footer-copyright" class="text-[#ff8fab] bg-[#fff5f7] px-4 py-2 rounded-full border-2 border-[#ffd1dc] inline-block font-bold">
@@ -348,7 +264,9 @@
                 download: "下載",
                 shuffle: "魔法洗牌",
                 modalDown: "下載桌布",
-                copyright: "圖片資源僅限私人非商業用途使用"
+                copyright: "圖片資源僅限私人非商業用途使用",
+                searchPlaceholder: "搜尋標題或分類...",
+                changeOutfit: "換裝"
             },
             ja: {
                 navYt: "YouTube チャンネル",
@@ -360,7 +278,9 @@
                 download: "ダウンロード",
                 shuffle: "魔法のシャッフル",
                 modalDown: "壁紙をダウンロード",
-                copyright: "画像リソースは私的かつ非商業目的でのみ使用可能です"
+                copyright: "画像リソースは私的かつ非商業目的でのみ使用可能です",
+                searchPlaceholder: "タイトルやカテゴリを検索...",
+                changeOutfit: "着せ替え"
             },
             en: {
                 navYt: "YouTube Channel",
@@ -372,13 +292,24 @@
                 download: "Download",
                 shuffle: "Magic Shuffle",
                 modalDown: "Download Wallpaper",
-                copyright: "Image resources are for personal and non-commercial use only"
+                copyright: "Image resources are for personal and non-commercial use only",
+                searchPlaceholder: "Search titles or categories...",
+                changeOutfit: "Change Outfit"
             }
         };
 
-        let currentLang = 'zh';
+        // --- 根據瀏覽器自動判斷預設語言 ---
+        function detectBrowserLanguage() {
+            const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+            if (browserLang.includes('zh')) return 'zh'; // 包含 zh-TW, zh-CN 等
+            if (browserLang.includes('en')) return 'en'; // 包含 en-US, en-GB 等
+            return 'ja'; // 無法判定或非中英文，一律預設為日文
+        }
+
+        let currentLang = detectBrowserLanguage(); 
         let currentCategory = 'all';
         let currentDisplayList = []; 
+        let currentModalItem = null; 
 
         function shuffleArray(array) {
             let currentIndex = array.length, randomIndex;
@@ -404,6 +335,30 @@
 
         function setLanguage(lang) {
             currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            // 確保對應按鈕存在再加入 active
+            const targetBtn = document.getElementById('btn-' + lang);
+            if(targetBtn) targetBtn.classList.add('active');
+
+            const t = translations[lang];
+            document.getElementById('nav-yt-text').textContent = t.navYt;
+            
+            document.getElementById('phil-title').textContent = t.philTitle;
+            document.getElementById('phil-text1').textContent = t.philText1;
+            document.getElementById('phil-text2').textContent = t.philText2;
+            document.getElementById('music-title').textContent = t.musicTitle;
+            
+            document.getElementById('shuffle-text').textContent = t.shuffle;
+            document.getElementById('search-input').placeholder = t.searchPlaceholder;
+            
+            if(document.getElementById('modal-download-text')) document.getElementById('modal-download-text').textContent = t.modalDown;
+            if(document.getElementById('modal-change-text')) document.getElementById('modal-change-text').textContent = t.changeOutfit;
+            if(document.getElementById('footer-copyright')) document.getElementById('footer-copyright').textContent = t.copyright;
+            
+            renderFilters();
+            renderGallery();
+        }
+
         function filterCategory(category, element) {
             currentCategory = category;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -419,7 +374,6 @@
         function renderFilters() {
             const container = document.getElementById('filter-container');
             const t = translations[currentLang];
-            
             let html = `<button onclick="filterCategory('all', this)" id="filter-all" class="filter-btn ${currentCategory === 'all' ? 'active' : ''}">${t.allCategory}</button>`;
 
             if (typeof categoryDictionary !== 'undefined') {
@@ -434,15 +388,33 @@
         function renderGallery() {
             const gallery = document.getElementById('gallery');
             const t = translations[currentLang];
+            const query = document.getElementById('search-input').value.toLowerCase();
             gallery.innerHTML = ''; 
 
             currentDisplayList.forEach(item => {
+                if (currentCategory !== 'all' && item.tag.category !== currentCategory) return;
+
+                let matchSearch = true;
+                if (query) {
+                    const catTextZh = categoryDictionary[item.tag.category].zh.toLowerCase();
+                    const catTextJa = categoryDictionary[item.tag.category].ja.toLowerCase();
+                    const catTextEn = categoryDictionary[item.tag.category].en.toLowerCase();
+                    const styleTextZh = item.tag.styleDesc.zh.toLowerCase();
+                    const styleTextJa = item.tag.styleDesc.ja.toLowerCase();
+                    const styleTextEn = item.tag.styleDesc.en.toLowerCase();
+                    
+                    matchSearch = catTextZh.includes(query) || catTextJa.includes(query) || catTextEn.includes(query) ||
+                                  styleTextZh.includes(query) || styleTextJa.includes(query) || styleTextEn.includes(query);
+                }
+                
+                if (!matchSearch) return;
+
                 let previewUrl = `https://drive.google.com/thumbnail?id=${item.fileId}&sz=w1920`;
                 let downloadUrl = `https://drive.google.com/uc?export=download&id=${item.fileId}`;
                 let styleDescText = item.tag.styleDesc[currentLang] || item.tag.styleDesc.zh;
 
                 const cardHTML = `
-                <div class="sweet-card flex flex-col group cursor-pointer" onclick="openModal('${previewUrl}', '${downloadUrl}')">
+                <div class="sweet-card flex flex-col group cursor-pointer" onclick="openModal('${item.id}')">
                     <div class="relative w-full pt-[56.25%] overflow-hidden bg-[#fff0f3]">
                         <img src="${previewUrl}" alt="Sweet Wallpaper ${item.id}" loading="lazy" 
                              class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
@@ -457,9 +429,9 @@
                         </div>
                     </div>
                     <div class="p-5 flex justify-between items-center bg-white flex-grow border-t-2 border-[#ffd1dc] border-dashed">
-                        <div><span class="text-xs md:text-sm text-[#ff8fab] font-round font-bold">${styleDescText}</span></div>
+                        <div><span class="text-sm text-[#ff8fab] font-round font-bold">${styleDescText}</span></div>
                         <a href="${downloadUrl}" target="_blank" download="Sweet_WP_${item.id}.png" 
-                           class="px-4 py-1.5 rounded-full bg-[#ffb3c6] text-white text-xs font-round font-bold hover:bg-[#ff8fab] transition-all shadow-md relative z-10 shrink-0 ml-2" onclick="event.stopPropagation();">
+                           class="px-4 py-1.5 rounded-full bg-[#ffb3c6] text-white text-xs font-round font-bold hover:bg-[#ff8fab] transition-all shadow-md relative z-10" onclick="event.stopPropagation();">
                             ${t.download}
                         </a>
                     </div>
@@ -468,11 +440,17 @@
             });
         }
 
-        function openModal(imgSrc, downloadUrl) {
+        function openModal(itemId) {
+            currentModalItem = wallpaperDatabase.find(i => i.id === itemId);
+            if(!currentModalItem) return;
+
+            let previewUrl = `https://drive.google.com/thumbnail?id=${currentModalItem.fileId}&sz=w1920`;
+            let downloadUrl = `https://drive.google.com/uc?export=download&id=${currentModalItem.fileId}`;
+
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('modal-image');
             document.getElementById('modal-download-btn').href = downloadUrl;
-            modalImg.src = imgSrc;
+            modalImg.src = previewUrl;
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -485,12 +463,46 @@
             }, 20);
         }
 
+        function changeOutfit() {
+            if(!currentModalItem) return;
+            
+            const sameCatItems = wallpaperDatabase.filter(i => 
+                i.tag.category === currentModalItem.tag.category && i.id !== currentModalItem.id
+            );
+            
+            if(sameCatItems.length === 0) return; 
+            
+            const nextItem = sameCatItems[Math.floor(Math.random() * sameCatItems.length)];
+            currentModalItem = nextItem;
+            
+            const modalImg = document.getElementById('modal-image');
+            
+            modalImg.classList.remove('opacity-100', 'scale-100');
+            modalImg.classList.add('opacity-0', 'scale-50', 'rotate-12');
+            
+            setTimeout(() => {
+                let previewUrl = `https://drive.google.com/thumbnail?id=${nextItem.fileId}&sz=w1920`;
+                let downloadUrl = `https://drive.google.com/uc?export=download&id=${nextItem.fileId}`;
+                
+                modalImg.src = previewUrl;
+                document.getElementById('modal-download-btn').href = downloadUrl;
+                
+                modalImg.classList.remove('opacity-0', 'scale-50', 'rotate-12');
+                modalImg.classList.add('opacity-100', 'scale-110');
+                
+                setTimeout(() => {
+                    modalImg.classList.remove('scale-110');
+                    modalImg.classList.add('scale-100');
+                }, 200);
+            }, 300);
+        }
+
         function closeModal() {
             const modal = document.getElementById('image-modal');
             const modalImg = document.getElementById('modal-image');
             
             modal.classList.add('opacity-0');
-            modalImg.classList.remove('opacity-100', 'scale-100');
+            modalImg.classList.remove('opacity-100', 'scale-100', 'scale-110');
             modalImg.classList.add('opacity-0', 'scale-95');
             
             setTimeout(() => {
@@ -498,36 +510,17 @@
                 modal.classList.add('hidden');
                 document.body.classList.remove('modal-open');
                 modalImg.src = ''; 
+                modalImg.classList.remove('rotate-12');
+                currentModalItem = null;
             }, 300);
-        }
-
-        function initCuteClock() {
-            const clockEl = document.getElementById('cute-clock');
-            const dateEl = document.getElementById('cute-date');
-            
-            function updateClock() {
-                const now = new Date();
-                const h = String(now.getHours()).padStart(2, '0');
-                const m = String(now.getMinutes()).padStart(2, '0');
-                const s = String(now.getSeconds()).padStart(2, '0');
-                
-                clockEl.textContent = `${h}:${m}:${s}`;
-                
-                const y = now.getFullYear();
-                const mo = String(now.getMonth() + 1).padStart(2, '0');
-                const d = String(now.getDate()).padStart(2, '0');
-                dateEl.textContent = `${y}.${mo}.${d}`;
-            }
-            setInterval(updateClock, 1000);
-            updateClock(); 
         }
 
         window.onload = function() { 
             if (typeof wallpaperDatabase !== 'undefined') {
                 currentDisplayList = shuffleArray([...wallpaperDatabase]);
             }
+            // 載入時依據偵測到的語言進行初始化
             setLanguage(currentLang);
-            initCuteClock(); 
         };
     </script>
 </body>
