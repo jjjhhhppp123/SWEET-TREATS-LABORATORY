@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWEET TREATS LABORATORY | 桌布分享平台</title>
     
+    <!-- 字體與 Bootstrap Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -17,11 +19,11 @@
                         mono: ['"Nunito"', 'sans-serif'],
                     },
                     colors: {
-                        sweetBg: '#fff5f7',
-                        cardBg: '#ffffff',
-                        sweetAccent: '#ffb3c6',
-                        sweetText: '#5c4d53',
-                        sweetBorder: '#ffd1dc'
+                        darkBg: '#121212',
+                        darkCard: '#1a1a1a',
+                        sweetAccent: '#ff8fab',
+                        sweetText: '#e0e0e0',
+                        darkBorder: '#333333'
                     }
                 }
             }
@@ -30,12 +32,13 @@
 
     <style>
         body {
-            background-color: #fff5f7;
-            color: #5c4d53;
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Zen Maru Gothic', sans-serif;
+            /* 保留原本的網格，調整為暗色調高對比設計 */
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 179, 198, 0.15) 0%, transparent 70%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23ffe4e8' opacity='0.5'/%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' stroke='%23ffb3c6' stroke-width='1' stroke-dasharray='4 2' fill='none'/%3E%3Cpath d='M0 0L60 60M60 0L0 60' stroke='%23ffb3c6' stroke-width='1' stroke-dasharray='4 2' opacity='0.3'/%3E%3C/svg%3E");
+                radial-gradient(circle at 50% 0%, rgba(255, 143, 171, 0.1) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23181818' opacity='0.5'/%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' stroke='%23333333' stroke-width='1' stroke-dasharray='4 2' fill='none'/%3E%3Cpath d='M0 0L60 60M60 0L0 60' stroke='%23333333' stroke-width='1' stroke-dasharray='4 2' opacity='0.3'/%3E%3C/svg%3E");
             background-attachment: fixed;
             margin: 0;
             padding: 0;
@@ -47,37 +50,38 @@
             letter-spacing: 0.02em;
         }
 
+        /* 導覽列改為暗色毛玻璃 */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(26, 26, 26, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px dashed #ffd1dc;
+            border-bottom: 2px dashed #333333;
         }
 
         .sweet-card {
-            background-color: #ffffff;
+            background-color: #1a1a1a;
             border-radius: 24px;
             overflow: hidden;
-            border: 2px solid #ffd1dc;
-            box-shadow: 0 10px 20px -5px rgba(255, 179, 198, 0.3);
+            border: 2px solid #333333;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .sweet-card:hover {
             transform: translateY(-8px) rotate(-1deg);
-            box-shadow: 0 15px 30px -5px rgba(255, 179, 198, 0.5);
-            border-color: #ffb3c6;
+            box-shadow: 0 15px 30px -5px rgba(255, 143, 171, 0.15);
+            border-color: #ff8fab;
         }
 
         .lang-btn {
             border-radius: 9999px;
             transition: all 0.2s;
-            color: #ff8fab;
+            color: #9ca3af; /* Tailwind gray-400 */
             font-weight: 700;
         }
         .lang-btn.active {
             background-color: #ffb3c6;
-            color: #ffffff;
+            color: #121212;
             font-weight: 900;
         }
 
@@ -85,9 +89,9 @@
             padding: 8px 20px;
             border-radius: 9999px;
             font-size: 0.9rem;
-            border: 2px dashed #ffd1dc;
-            background-color: #ffffff;
-            color: #ff8fab;
+            border: 2px dashed #333333;
+            background-color: #1a1a1a;
+            color: #9ca3af;
             transition: all 0.2s;
             font-weight: 700;
             height: 40px;
@@ -95,104 +99,140 @@
             align-items: center;
         }
         .filter-btn.active, .filter-btn:hover {
-            background-color: #ffb3c6;
-            color: #ffffff;
+            background-color: #2a1b1f;
+            color: #ffb3c6;
             border: 2px solid #ffb3c6;
             font-weight: 900;
-            box-shadow: 0 5px 15px rgba(255, 179, 198, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 143, 171, 0.1);
         }
 
         .cute-clock {
             color: #ffb3c6;
             text-shadow: 
-                -2px -2px 0 #fff,
-                 2px -2px 0 #fff,
-                -2px  2px 0 #fff,
-                 2px  2px 0 #fff,
-                 0px  4px 0px rgba(255, 179, 198, 1);
+                -2px -2px 0 #121212,
+                 2px -2px 0 #121212,
+                -2px  2px 0 #121212,
+                 2px  2px 0 #121212,
+                 0px  4px 0px rgba(255, 143, 171, 0.3);
         }
 
         body.modal-open { overflow: hidden; }
         
-        /* 換裝動畫專用 */
         .outfit-transition {
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* 隱藏預設滾動條樣式，改用自定義暗黑風格 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff8fab; 
         }
     </style>
     
     <script src="wallpapers.js"></script>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-[#ffb3c6] selection:text-white">
+<body class="min-h-screen flex flex-col selection:bg-[#ffb3c6] selection:text-[#121212]">
 
     <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-4 md:px-12 py-3 flex justify-between items-center gap-2">
-        <a href="#" class="font-round text-sm md:text-xl text-[#5c4d53] flex items-center gap-2 shrink-0">
-            <span>🎀</span>
+        <a href="#" class="font-round text-sm md:text-xl text-[#e0e0e0] flex items-center gap-2 shrink-0 transition-colors hover:text-[#ffb3c6]">
             <span class="hidden min-[400px]:inline">SWEET TREATS LABORATORY</span>
             <span class="inline min-[400px]:hidden">SWEET TREATS</span>
         </a>
         
         <div class="flex items-center gap-2 md:gap-4 shrink-0">
-            <div class="bg-white p-1 rounded-full flex gap-1 border-2 border-[#ffd1dc] shadow-sm">
+            <div class="bg-[#1a1a1a] p-1 rounded-full flex gap-1 border-2 border-[#333] shadow-sm">
                 <button onclick="setLanguage('zh')" id="btn-zh" class="lang-btn text-[10px] md:text-xs px-3 py-1">中文</button>
                 <button onclick="setLanguage('ja')" id="btn-ja" class="lang-btn text-[10px] md:text-xs px-3 py-1">日本語</button>
                 <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-[10px] md:text-xs px-3 py-1">EN</button>
             </div>
-            <a href="https://www.youtube.com/channel/UC4js-s7BYKm4dGYFyWQUCSw" target="_blank" class="bg-[#ffb3c6] text-white hover:bg-[#ff8fab] px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-sm font-round flex items-center transition-all shadow-[0_4px_10px_rgba(255,179,198,0.4)] whitespace-nowrap">
+            <a href="https://www.youtube.com/channel/UC4js-s7BYKm4dGYFyWQUCSw" target="_blank" class="bg-[#ffb3c6] text-[#121212] hover:bg-[#ff8fab] px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-sm font-round flex items-center transition-all shadow-[0_4px_10px_rgba(255,143,171,0.2)] whitespace-nowrap">
+                <i class="bi bi-youtube mr-1.5 text-base"></i>
                 <span id="nav-yt-text">YouTube 頻道</span>
             </a>
         </div>
     </nav>
 
-    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-16 mb-8 border-b-4 border-[#ffd1dc]/50 shadow-sm">
+    <!-- 頁首風格背景區塊 (暗黑主題漸層) -->
+    <section class="relative w-full min-h-[40vh] flex flex-col justify-center pt-28 pb-16 mb-8 border-b-4 border-[#333]/50 shadow-sm">
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95" style="background-image: url('https://drive.google.com/thumbnail?id=1FBCo4K8lPXGpDIWTBMs1Wfz3CpKC74Yx&sz=w1920');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#fff5f7] via-[#fff5f7]/30 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent h-32"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40" style="background-image: url('https://drive.google.com/thumbnail?id=1FBCo4K8lPXGpDIWTBMs1Wfz3CpKC74Yx&sz=w1920'); filter: contrast(1.1) brightness(0.8);"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#121212]/80 to-transparent h-32"></div>
         </div>
         <header class="relative z-10 px-6 text-center max-w-4xl mx-auto w-full">
-            <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#5c4d53] leading-tight drop-shadow-md bg-white/70 inline-block px-8 py-3 rounded-[32px] backdrop-blur-sm border-2 border-white/60 shadow-sm">
+            <h1 class="font-round text-4xl md:text-5xl lg:text-6xl text-[#fff] leading-tight drop-shadow-md bg-[#1a1a1a]/80 inline-block px-8 py-3 rounded-[32px] backdrop-blur-md border-2 border-[#333] shadow-lg">
                 SWEET TREATS LABORATORY
             </h1>
         </header>
     </section>
 
-    <section class="px-6 max-w-3xl mx-auto w-full mb-8 relative z-10 -mt-16">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-8 md:p-10 rounded-[32px] shadow-sm flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-6 pl-1">
-                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
-                    ABOUT
-                </span>
-                <h2 id="phil-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
-                    頻道理念
-                </h2>
+    <!-- 左右排版區塊：左側頻道理念 / 右側音樂展示 -->
+    <section class="px-6 max-w-[90rem] mx-auto w-full mb-12 relative z-10 -mt-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            
+            <!-- 左側：頻道理念 (ABOUT) -->
+            <div class="bg-[#1a1a1a]/95 backdrop-blur-sm border-2 border-[#333] p-8 md:p-10 rounded-[32px] shadow-lg flex flex-col justify-center h-full">
+                <div class="flex items-center gap-3 mb-6 pl-1">
+                    <span class="text-xs text-[#121212] bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm flex items-center gap-1">
+                        <i class="bi bi-info-circle-fill"></i> ABOUT
+                    </span>
+                    <h2 id="phil-title" class="font-round text-2xl md:text-3xl text-[#e0e0e0] font-bold">
+                        頻道理念
+                    </h2>
+                </div>
+                <div class="flex flex-col items-start gap-3 font-round font-bold text-sm md:text-base pl-1">
+                    <span id="phil-text1" class="bg-[#2a1b1f] text-[#ffb3c6] border border-[#ffb3c6]/30 px-4 py-2 rounded-lg leading-relaxed shadow-sm">
+                        在忙碌的生活中，尋找一絲甜蜜的療癒...
+                    </span>
+                    <span id="phil-text2" class="bg-[#2a1b1f] text-[#ffb3c6] border border-[#ffb3c6]/30 px-4 py-2 rounded-lg leading-relaxed shadow-sm">
+                        感受 可愛的魅力 與 溫暖
+                    </span>
+                </div>
+                
+                <!-- 加入時鐘元素作為左側的點綴裝飾 -->
+                <div class="mt-8 pt-6 border-t-2 border-[#333] border-dashed">
+                    <div class="flex justify-between w-full max-w-[320px] mb-1 opacity-60">
+                        <span class="text-xs text-[#9ca3af] font-mono font-bold">SYS.STATUS: SWEET</span>
+                        <span class="text-xs text-[#9ca3af] font-mono font-bold">LOCAL TIME</span>
+                    </div>
+                    <div id="cute-clock" class="font-mono text-4xl md:text-5xl font-black text-[#ffb3c6] cute-clock py-1 tracking-wider">
+                        18:40:21
+                    </div>
+                    <div class="flex justify-between w-full max-w-[320px] mt-1 opacity-60">
+                        <span id="cute-date" class="text-xs text-[#9ca3af] font-mono font-bold">YYYY.MM.DD</span>
+                        <span class="text-xs text-[#9ca3af] font-mono font-bold">LAB-SYNC</span>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-col items-start gap-2.5 font-round font-bold text-sm md:text-base pl-1">
-                <span id="phil-text1" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
-                    在忙碌的生活中，尋找一絲甜蜜的療癒...
-                </span>
-                <span id="phil-text2" class="bg-[#ffb3c6] text-white px-3 py-1.5 rounded-md leading-relaxed shadow-sm">
-                    感受 可愛的魅力 與 溫暖
-                </span>
+
+            <!-- 右側：影片展示 (MUSIC) -->
+            <div class="bg-[#1a1a1a]/95 backdrop-blur-sm border-2 border-[#333] p-6 md:p-8 rounded-[32px] shadow-lg flex flex-col justify-center h-full">
+                <div class="flex items-center gap-3 mb-6 pl-1">
+                    <span class="text-xs text-[#121212] bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm flex items-center gap-1">
+                        <i class="bi bi-music-note-beamed"></i> MUSIC
+                    </span>
+                    <h2 id="music-title" class="font-round text-2xl md:text-3xl text-[#e0e0e0] font-bold">
+                        本週推薦曲目
+                    </h2>
+                </div>
+                <div class="w-full aspect-video rounded-[20px] overflow-hidden border-2 border-[#333] shadow-inner bg-[#121212]">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZpzeNKbI3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
+            
         </div>
     </section>
 
-    <section class="px-6 max-w-3xl mx-auto w-full mb-12 relative z-10">
-        <div class="bg-white/95 backdrop-blur-sm border-2 border-[#ffd1dc] p-6 md:p-8 rounded-[32px] shadow-sm flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-6 pl-1">
-                <span class="text-xs text-white bg-[#ff8fab] px-3.5 py-1 uppercase font-round font-black rounded-full tracking-wider shadow-sm">
-                    MUSIC
-                </span>
-                <h2 id="music-title" class="font-round text-2xl md:text-3xl text-[#5c4d53] font-bold">
-                    本週推薦曲目
-                </h2>
-            </div>
-            <div class="w-full aspect-video rounded-[20px] overflow-hidden border-4 border-[#fff0f3] shadow-inner bg-[#fff5f7]">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TZpzeNKbI3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
+    <!-- 篩選與搜尋列 -->
     <section class="px-6 md:px-12 max-w-[90rem] mx-auto w-full mb-10 relative z-10">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div id="filter-container" class="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 flex-grow">
@@ -200,13 +240,15 @@
             </div>
             
             <div class="flex flex-col sm:flex-row gap-3 items-center w-full lg:w-auto shrink-0">
+                <!-- 搜尋框 (使用 Bootstrap Icon) -->
                 <div class="relative w-full sm:w-64">
-                    <input type="text" id="search-input" placeholder="搜尋標題或分類..." class="w-full px-4 py-2 pl-10 rounded-full border-2 border-[#ffd1dc] focus:border-[#ffb3c6] outline-none font-round text-sm text-[#5c4d53] transition-colors" onkeyup="renderGallery()">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#ffb3c6] text-sm">🔍</span>
+                    <input type="text" id="search-input" placeholder="搜尋標題或分類..." class="w-full px-4 py-2 pl-10 rounded-full border-2 border-[#333] bg-[#1a1a1a] text-[#e0e0e0] placeholder-gray-500 focus:border-[#ffb3c6] outline-none font-round text-sm transition-colors" onkeyup="renderGallery()">
+                    <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-[#ffb3c6] text-sm"></i>
                 </div>
                 
-                <button onclick="shuffleGallery()" class="shrink-0 flex items-center gap-2 px-6 h-[40px] w-full sm:w-auto justify-center bg-white text-[#ff8fab] font-round text-[0.9rem] rounded-full border-2 border-[#ffd1dc] hover:border-[#ffb3c6] hover:bg-[#fff0f3] transition-all shadow-sm active:scale-95 group">
-                    <span class="group-hover:rotate-180 transition-transform duration-500">✨</span>
+                <!-- 魔法洗牌 (使用 Bootstrap Icon) -->
+                <button onclick="shuffleGallery()" class="shrink-0 flex items-center gap-2 px-6 h-[40px] w-full sm:w-auto justify-center bg-[#1a1a1a] text-[#ff8fab] font-round text-[0.9rem] rounded-full border-2 border-[#333] hover:border-[#ffb3c6] hover:text-[#ffb3c6] hover:bg-[#2a1b1f] transition-all shadow-sm active:scale-95 group">
+                    <i class="bi bi-stars group-hover:rotate-180 transition-transform duration-500"></i>
                     <span id="shuffle-text" class="font-bold">魔法洗牌</span>
                 </button>
             </div>
@@ -219,35 +261,36 @@
         </div>
     </main>
 
-    <!-- 圖片預覽彈出視窗 (Modal) -->
-    <div id="image-modal" class="fixed inset-0 z-[100] hidden flex-col items-center justify-center p-4 sm:p-8 bg-[#5c4d53]/60 backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="if(event.target === this) closeModal()">
+    <!-- 圖片預覽彈出視窗 (Modal 暗黑模式) -->
+    <div id="image-modal" class="fixed inset-0 z-[100] hidden flex-col items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-md transition-opacity duration-300 opacity-0" onclick="if(event.target === this) closeModal()">
         
-        <button onclick="closeModal()" class="absolute top-6 right-6 sm:top-10 sm:right-10 text-white hover:text-[#ffb3c6] hover:scale-110 transition-all cursor-pointer z-50 bg-[#ffb3c6]/80 p-3 rounded-full border-2 border-white shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+        <button onclick="closeModal()" class="absolute top-6 right-6 sm:top-10 sm:right-10 text-white hover:text-[#ffb3c6] hover:scale-110 transition-all cursor-pointer z-50 bg-[#1a1a1a] p-3 rounded-full border-2 border-[#333] shadow-lg flex items-center justify-center w-12 h-12">
+            <i class="bi bi-x-lg text-xl"></i>
         </button>
 
         <div class="relative w-full max-w-6xl max-h-[75vh] flex justify-center items-center pointer-events-none">
-            <img id="modal-image" src="" alt="Preview" class="outfit-transition max-w-full max-h-[70vh] object-contain border-4 border-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.2)] transform scale-95 opacity-0 pointer-events-auto">
+            <img id="modal-image" src="" alt="Preview" class="outfit-transition max-w-full max-h-[70vh] object-contain border-4 border-[#333] rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.8)] transform scale-95 opacity-0 pointer-events-auto bg-[#121212]">
         </div>
 
         <div class="mt-6 sm:mt-8 z-50 flex flex-col sm:flex-row items-center gap-4">
-            <button onclick="changeOutfit()" class="px-8 py-3 rounded-full bg-white text-[#ffb3c6] border-2 border-[#ffb3c6] font-round text-sm sm:text-base hover:bg-[#fff0f3] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.3)] flex items-center gap-2 hover:scale-105 active:scale-95">
-                <span>🪄</span>
+            <!-- 換裝按鈕 (使用 Bootstrap Icon) -->
+            <button onclick="changeOutfit()" class="px-8 py-3 rounded-full bg-[#1a1a1a] text-[#ffb3c6] border-2 border-[#ffb3c6] font-round text-sm sm:text-base hover:bg-[#2a1b1f] transition-all shadow-[0_5px_15px_rgba(255,143,171,0.15)] flex items-center gap-2 hover:scale-105 active:scale-95">
+                <i class="bi bi-magic text-lg"></i>
                 <span id="modal-change-text" class="font-black">換裝</span>
             </button>
 
-            <a id="modal-download-btn" href="#" target="_blank" class="px-8 py-3 rounded-full bg-[#ffb3c6] text-white border-2 border-white font-round text-sm sm:text-base hover:bg-[#ff8fab] transition-all shadow-[0_5px_15px_rgba(255,179,198,0.5)] flex items-center gap-2 hover:scale-105 active:scale-95">
-                <span>🎀</span>
+            <!-- 下載按鈕 (使用 Bootstrap Icon) -->
+            <a id="modal-download-btn" href="#" target="_blank" class="px-8 py-3 rounded-full bg-[#ffb3c6] text-[#121212] border-2 border-[#ffb3c6] font-round text-sm sm:text-base hover:bg-[#ff8fab] transition-all shadow-[0_5px_15px_rgba(255,143,171,0.3)] flex items-center gap-2 hover:scale-105 active:scale-95">
+                <i class="bi bi-download text-lg"></i>
                 <span id="modal-download-text" class="font-black">下載桌布</span>
             </a>
         </div>
     </div>
 
-    <footer class="py-12 px-6 text-center border-t-2 border-[#ffd1dc] text-[#7d6b71] text-xs font-round bg-white flex flex-col gap-3 items-center relative z-10">
+    <!-- 頁尾暗黑版 -->
+    <footer class="py-12 px-6 text-center border-t-2 border-[#333] text-[#9ca3af] text-xs font-round bg-[#1a1a1a] flex flex-col gap-3 items-center relative z-10">
         <div>&copy; 2026 SWEET TREATS LABORATORY. All Sweets Reserved.</div>
-        <div id="footer-copyright" class="text-[#ff8fab] bg-[#fff5f7] px-4 py-2 rounded-full border-2 border-[#ffd1dc] inline-block font-bold">
+        <div id="footer-copyright" class="text-[#ffb3c6] bg-[#2a1b1f] px-4 py-2 rounded-full border border-[#ffb3c6]/30 inline-block font-bold shadow-sm">
             圖片資源僅限私人非商業用途使用
         </div>
     </footer>
@@ -298,12 +341,11 @@
             }
         };
 
-        // --- 根據瀏覽器自動判斷預設語言 ---
         function detectBrowserLanguage() {
             const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-            if (browserLang.includes('zh')) return 'zh'; // 包含 zh-TW, zh-CN 等
-            if (browserLang.includes('en')) return 'en'; // 包含 en-US, en-GB 等
-            return 'ja'; // 無法判定或非中英文，一律預設為日文
+            if (browserLang.includes('zh')) return 'zh'; 
+            if (browserLang.includes('en')) return 'en'; 
+            return 'ja'; 
         }
 
         let currentLang = detectBrowserLanguage(); 
@@ -336,7 +378,6 @@
         function setLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            // 確保對應按鈕存在再加入 active
             const targetBtn = document.getElementById('btn-' + lang);
             if(targetBtn) targetBtn.classList.add('active');
 
@@ -415,24 +456,25 @@
 
                 const cardHTML = `
                 <div class="sweet-card flex flex-col group cursor-pointer" onclick="openModal('${item.id}')">
-                    <div class="relative w-full pt-[56.25%] overflow-hidden bg-[#fff0f3]">
+                    <div class="relative w-full pt-[56.25%] overflow-hidden bg-[#121212]">
                         <img src="${previewUrl}" alt="Sweet Wallpaper ${item.id}" loading="lazy" 
                              class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                             onerror="this.src='https://placehold.co/800x450/fff0f3/ffb3c6?text=Sweet+Treats'">
+                             onerror="this.src='https://placehold.co/800x450/1a1a1a/ffb3c6?text=Sweet+Treats'">
                         
-                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none"></div>
                         
+                        <!-- Hover 出現愛心圖示 -->
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <div class="bg-white/80 p-4 rounded-full text-[#ffb3c6] shadow-lg transform scale-50 group-hover:scale-100 transition-transform duration-300">
-                                <span class="text-3xl">🤍</span>
+                            <div class="bg-[#1a1a1a]/80 p-4 rounded-full text-[#ffb3c6] shadow-lg transform scale-50 group-hover:scale-100 transition-transform duration-300 flex items-center justify-center w-14 h-14">
+                                <i class="bi bi-heart-fill text-2xl mt-1"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="p-5 flex justify-between items-center bg-white flex-grow border-t-2 border-[#ffd1dc] border-dashed">
-                        <div><span class="text-sm text-[#ff8fab] font-round font-bold">${styleDescText}</span></div>
+                    <div class="p-5 flex justify-between items-center bg-[#1a1a1a] flex-grow border-t-2 border-[#333] border-dashed">
+                        <div><span class="text-xs md:text-sm text-[#ffb3c6] font-round font-bold">${styleDescText}</span></div>
                         <a href="${downloadUrl}" target="_blank" download="Sweet_WP_${item.id}.png" 
-                           class="px-4 py-1.5 rounded-full bg-[#ffb3c6] text-white text-xs font-round font-bold hover:bg-[#ff8fab] transition-all shadow-md relative z-10" onclick="event.stopPropagation();">
-                            ${t.download}
+                           class="px-4 py-1.5 rounded-full bg-[#ffb3c6] text-[#121212] text-xs font-round font-bold hover:bg-[#ff8fab] transition-all shadow-md relative z-10 shrink-0 ml-2 flex items-center gap-1.5" onclick="event.stopPropagation();">
+                            <i class="bi bi-download"></i> ${t.download}
                         </a>
                     </div>
                 </div>`;
@@ -515,12 +557,34 @@
             }, 300);
         }
 
+        function initCuteClock() {
+            const clockEl = document.getElementById('cute-clock');
+            const dateEl = document.getElementById('cute-date');
+            if(!clockEl || !dateEl) return;
+            
+            function updateClock() {
+                const now = new Date();
+                const h = String(now.getHours()).padStart(2, '0');
+                const m = String(now.getMinutes()).padStart(2, '0');
+                const s = String(now.getSeconds()).padStart(2, '0');
+                
+                clockEl.textContent = `${h}:${m}:${s}`;
+                
+                const y = now.getFullYear();
+                const mo = String(now.getMonth() + 1).padStart(2, '0');
+                const d = String(now.getDate()).padStart(2, '0');
+                dateEl.textContent = `${y}.${mo}.${d}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock(); 
+        }
+
         window.onload = function() { 
             if (typeof wallpaperDatabase !== 'undefined') {
                 currentDisplayList = shuffleArray([...wallpaperDatabase]);
             }
-            // 載入時依據偵測到的語言進行初始化
             setLanguage(currentLang);
+            initCuteClock(); 
         };
     </script>
 </body>
