@@ -17,6 +17,11 @@ const categoryDictionary = {
         zh: "棉花糖牛奶冰淇淋",
         ja: "マシュマロミルクアイス",
         en: "Marshmallow Milk Ice Cream"
+    },
+    blueberry_fruit_pie: {
+        zh: "藍莓水果派",
+        ja: "ブルーベリーフルーツパイ",
+        en: "Blueberry Fruit Pie"
     }
 };
 
@@ -146,5 +151,47 @@ const wallpaperDatabase = [
             styleDesc: { zh: "夢幻冰淇淋 / 少女心", ja: "夢のアイスクリーム / 乙女心", en: "Dreamy Ice Cream / Girly Heart" }
         },
         fileId: "1dCzbBt67g67rt1lle5dMG-eISM8aisf6" 
+    },
+    
+    // 16~20: 藍莓水果派 Blueberry Fruit Pie
+    { 
+        id: "016", 
+        tag: {
+            category: "blueberry_fruit_pie",
+            styleDesc: { zh: "藍莓果香 / 清新甜點", ja: "ブルーベリーの香り / さわやかスイーツ", en: "Blueberry Scent / Fresh Dessert" }
+        },
+        fileId: "1d5pVKlepWVhU38WOKnGVyIOn47yimHyI" 
+    },
+    { 
+        id: "017", 
+        tag: {
+            category: "blueberry_fruit_pie",
+            styleDesc: { zh: "酥脆派皮 / 療癒時光", ja: "サクサクパイ / 癒しタイム", en: "Crispy Crust / Healing Time" }
+        },
+        fileId: "1bklQiG6myUAiUQEj4FOwLuL97kM7xlTs" 
+    },
+    { 
+        id: "018", 
+        tag: {
+            category: "blueberry_fruit_pie",
+            styleDesc: { zh: "午後微甜 / 溫馨陪伴", ja: "午後の甘さ / 温かい寄り添い", en: "Afternoon Sweetness / Cozy Companion" }
+        },
+        fileId: "1xB8w-ZXJLjjCf_fpHgksOMyw6hzr1NE2" 
+    },
+    { 
+        id: "019", 
+        tag: {
+            category: "blueberry_fruit_pie",
+            styleDesc: { zh: "森林果實 / 夢幻滋味", ja: "森の果実 / 夢の味わい", en: "Forest Berries / Dreamy Taste" }
+        },
+        fileId: "1uEga03j3Bv8fwQpl3oOA_Tom6MNquTGc" 
+    },
+    { 
+        id: "020", 
+        tag: {
+            category: "blueberry_fruit_pie",
+            styleDesc: { zh: "手工烘焙 / 快樂日常", ja: "手作りベーキング / 楽しい日常", en: "Handmade Baking / Happy Daily" }
+        },
+        fileId: "1Au7OqYaFPdKr9eAzPd5SdDkePsnFzpfM" 
     }
 ];
