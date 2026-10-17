@@ -22,6 +22,11 @@ const categoryDictionary = {
         zh: "藍莓水果派",
         ja: "ブルーベリーフルーツパイ",
         en: "Blueberry Fruit Pie"
+    },
+    grape_float: {
+        zh: "葡萄漂浮汽水",
+        ja: "グレープフロート",
+        en: "Grape float"
     }
 };
 
@@ -193,5 +198,47 @@ const wallpaperDatabase = [
             styleDesc: { zh: "手工烘焙 / 快樂日常", ja: "手作りベーキング / 楽しい日常", en: "Handmade Baking / Happy Daily" }
         },
         fileId: "1Au7OqYaFPdKr9eAzPd5SdDkePsnFzpfM" 
+    },
+    
+    // 21~25: 葡萄漂浮汽水 Grape float
+    { 
+        id: "021", 
+        tag: {
+            category: "grape_float",
+            styleDesc: { zh: "清涼汽水 / 夏日消暑", ja: "涼しいソーダ / 夏の暑さ対策", en: "Cool Soda / Summer Refreshment" }
+        },
+        fileId: "1yHrnUQIjQHKkz6ZU_4irQxEX6G23waz0" 
+    },
+    { 
+        id: "022", 
+        tag: {
+            category: "grape_float",
+            styleDesc: { zh: "紫色夢幻 / 微醺氣泡", ja: "紫の夢 / ほろ酔いバブル", en: "Purple Dream / Tipsy Bubbles" }
+        },
+        fileId: "1UYVoYdLSSk5wfmafOU0f-wjPetyKY3mV" 
+    },
+    { 
+        id: "023", 
+        tag: {
+            category: "grape_float",
+            styleDesc: { zh: "冰鎮葡萄 / 舒暢心情", ja: "氷で冷やしたブドウ / リフレッシュ気分", en: "Iced Grapes / Refreshing Mood" }
+        },
+        fileId: "1SuxG4KTCz-kZyyoyU9bRDAePyIqUrWBb" 
+    },
+    { 
+        id: "024", 
+        tag: {
+            category: "grape_float",
+            styleDesc: { zh: "漂浮冰淇淋 / 雙重享受", ja: "フロートアイス / 2つの楽しみ", en: "Float Ice Cream / Double Enjoyment" }
+        },
+        fileId: "1glGmOaVmQ7yuZo83g5h3ftZPm6UyiQ8c" 
+    },
+    { 
+        id: "025", 
+        tag: {
+            category: "grape_float",
+            styleDesc: { zh: "午後微光 / 悠閒時光", ja: "午後の微光 / のんびりタイム", en: "Afternoon Glimmer / Leisure Time" }
+        },
+        fileId: "1U8dMHKpXwadaCaz6YnphaAVLTKJacbEM" 
     }
 ];
