@@ -27,6 +27,11 @@ const categoryDictionary = {
         zh: "葡萄漂浮汽水",
         ja: "グレープフロート",
         en: "Grape float"
+    },
+    vanilla_mousse_tart: {
+        zh: "香草生乳慕斯塔",
+        ja: "バニラ生乳ムースタルト",
+        en: "Vanilla fresh milk mousse tart"
     }
 };
 
@@ -240,5 +245,47 @@ const wallpaperDatabase = [
             styleDesc: { zh: "午後微光 / 悠閒時光", ja: "午後の微光 / のんびりタイム", en: "Afternoon Glimmer / Leisure Time" }
         },
         fileId: "1U8dMHKpXwadaCaz6YnphaAVLTKJacbEM" 
+    },
+    
+    // 26~30: 香草生乳慕斯塔 Vanilla fresh milk mousse tart
+    { 
+        id: "026", 
+        tag: {
+            category: "vanilla_mousse_tart",
+            styleDesc: { zh: "濃郁奶香 / 療癒甜點", ja: "濃厚ミルク / 癒しのスイーツ", en: "Rich Milky / Healing Dessert" }
+        },
+        fileId: "1aR0yufuog5_2KNbfl7cB9bOv5nZTZe0j" 
+    },
+    { 
+        id: "027", 
+        tag: {
+            category: "vanilla_mousse_tart",
+            styleDesc: { zh: "酥脆塔皮 / 幸福滋味", ja: "サクサクタルト / 幸せの味", en: "Crispy Tart / Taste of Happiness" }
+        },
+        fileId: "1Ne9TGABBlBUqBLWcKS1n1XnSYrnqZvU8" 
+    },
+    { 
+        id: "028", 
+        tag: {
+            category: "vanilla_mousse_tart",
+            styleDesc: { zh: "經典香草 / 午後微光", ja: "定番バニラ / 午後の微光", en: "Classic Vanilla / Afternoon Glimmer" }
+        },
+        fileId: "1-GFwnr8kYSDwC7Cr8eCjljDV0GnjhaNK" 
+    },
+    { 
+        id: "029", 
+        tag: {
+            category: "vanilla_mousse_tart",
+            styleDesc: { zh: "輕盈慕斯 / 甜美日常", ja: "軽やかなムース / 甘い日常", en: "Light Mousse / Sweet Daily" }
+        },
+        fileId: "1tkYEQVgMEGkyBuZF26jSfICEdZDyiXqe" 
+    },
+    { 
+        id: "030", 
+        tag: {
+            category: "vanilla_mousse_tart",
+            styleDesc: { zh: "溫暖烘焙 / 悠閒享受", ja: "温かいベーキング / のんびり楽しむ", en: "Warm Baking / Leisure Enjoyment" }
+        },
+        fileId: "19PY52ahMYwfDd_Yz7GXhHLMUYTuq3MPg" 
     }
 ];
